@@ -38,7 +38,7 @@ export const RestaurantCardContainer = () => {
     if (searchText === "" || listOfRestaurant.length === 0) {
       fetchData();
     }
-  }, [searchText]);
+  }, [listOfRestaurant.length, searchText]);
 
   const fetchData = async () => {
     setIsLoading(true);
