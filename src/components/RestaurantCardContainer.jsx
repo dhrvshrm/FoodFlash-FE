@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react";
 import { RestaurantCard } from "./RestaurantCard";
-import { Button } from "@mui/material";
 import Shimmer from "./Shimmer";
 import FilterBtn from "./FilterBtn";
+import { Button, Input } from "@mui/material";
 
 export const RestaurantCardContainer = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log({ isLoading });
+  const [searchText, setSearchText] = useState("");
+  console.log("searchText", searchText);
+
+  const handleSearch = () => {
+    console.log("Search for: ", searchText);
+    const filteredList = listOfRestaurant.filter((restaurant) =>
+      restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setListOfRestaurant(filteredList);
+  };
+
   const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
 
   function handleFilterClick() {
@@ -19,7 +29,11 @@ export const RestaurantCardContainer = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+
+    if (searchText === "" || listOfRestaurant.length === 0) {
+      fetchData();
+    }
+  }, [searchText]);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -36,7 +50,50 @@ export const RestaurantCardContainer = () => {
   return (
     <>
       <FilterBtn handleFilterClick={handleFilterClick} />
-
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          border: "2px solid black",
+          borderRadius: "1rem",
+          backgroundColor: " #c0d6e4",
+        }}
+      >
+        <Input
+          placeholder="Search for your Favourite Dishes ... "
+          autoFocus={false}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          sx={{
+            height: "2rem",
+            margin: "1rem 2rem",
+            width: "20rem",
+            paddingLeft: "0.5rem",
+            fontFamily: "Raleway, sans-serif",
+            backgroundColor: "white",
+          }}
+        />
+        <Button
+          onClick={handleSearch}
+          sx={{
+            height: "2rem",
+            margin: "1rem 2rem",
+            width: "5rem",
+            borderRadius: "1rem",
+            backgroundColor: "lightGray",
+            cursor: "pointer",
+            color: "black",
+            border: "1px solid black",
+            textTransform: "none",
+            "&:hover": {
+              backgroundColor: " #c0d6e4",
+            },
+          }}
+        >
+          Search
+        </Button>
+      </div>
       <div
         style={{
           display: "flex",
