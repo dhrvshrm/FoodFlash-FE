@@ -12,8 +12,13 @@ export const RestaurantCardContainer = () => {
 
   const handleSearch = () => {
     console.log("Search for: ", searchText);
-    const filteredList = listOfRestaurant.filter((restaurant) =>
-      restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
+    const filteredList = listOfRestaurant.filter(
+      (restaurant) =>
+        restaurant.info.name.toLowerCase().includes(searchText.toLowerCase()) ||
+        restaurant.info.cuisines
+          .join(" ")
+          .toLowerCase()
+          .includes(searchText.toLowerCase())
     );
     setListOfRestaurant(filteredList);
   };
