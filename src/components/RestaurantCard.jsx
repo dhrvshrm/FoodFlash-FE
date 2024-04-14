@@ -33,16 +33,23 @@ export const RestaurantCard = (props) => {
         }}
       >
         <Typography
-          variant="h6"
           sx={{
             fontWeight: 700,
             marginBottom: "0.5rem",
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            fontFamily: "Raleway, sans-serif",
+            fontSize: "1.2rem",
           }}
         >
           {props.name}
         </Typography>
         {propsArr.slice(1, 4).map((item) => (
-          <Typography variant="body1" sx={{ fontWeight: 500 }} key={item}>
+          <Typography
+            sx={{ fontWeight: 500, fontFamily: "Raleway, sans-serif" }}
+            key={item}
+          >
             {item}
           </Typography>
         ))}

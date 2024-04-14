@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { RestaurantCard } from "./RestaurantCard";
 import { Button } from "@mui/material";
-import { cardData } from "../constants";
 import Shimmer from "./Shimmer";
+import FilterBtn from "./FilterBtn";
 
 export const RestaurantCardContainer = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -10,12 +10,12 @@ export const RestaurantCardContainer = () => {
   console.log({ isLoading });
   const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
 
-  const handleFilterClick = () => {
+  function handleFilterClick() {
     const filteredList = listOfRestaurant.filter(
-      (restaurant) => restaurant.info.avgRating > 4.0
+      (restaurant) => restaurant.info.avgRating > 4.2
     );
     setListOfRestaurant(filteredList);
-  };
+  }
 
   useEffect(() => {
     fetchData();
@@ -35,16 +35,7 @@ export const RestaurantCardContainer = () => {
 
   return (
     <>
-      <Button
-        variant="contained"
-        color="secondary"
-        sx={{
-          backgroundColor: "darkGray",
-        }}
-        onClick={handleFilterClick}
-      >
-        Top Rated Restaurants
-      </Button>
+      <FilterBtn handleFilterClick={handleFilterClick} />
 
       <div
         style={{

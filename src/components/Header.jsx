@@ -13,7 +13,7 @@ export const Header = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        backgroundColor: "lightCyan",
+        backgroundColor: " #c0d6e4",
         border: "2px solid black",
         margin: "0.5rem",
       }}
