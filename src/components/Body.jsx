@@ -1,5 +1,4 @@
 import { RestaurantCardContainer } from "./RestaurantCardContainer";
-import Search from "./Search";
 
 export default function Body() {
   return (
@@ -12,7 +11,6 @@ export default function Body() {
         padding: "1rem",
       }}
     >
-      <Search />
       <RestaurantCardContainer />
     </div>
   );
