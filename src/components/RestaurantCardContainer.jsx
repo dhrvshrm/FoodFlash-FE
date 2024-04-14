@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { RestaurantCard } from "./RestaurantCard";
 import { Button } from "@mui/material";
 import { cardData } from "../constants";
+import Shimmer from "./Shimmer";
 
 export const RestaurantCardContainer = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -32,8 +33,6 @@ export const RestaurantCardContainer = () => {
     setListOfRestaurant(restaurants);
   };
 
-  if (isLoading) return <h1>Loading...</h1>;
-
   return (
     <>
       <Button
@@ -46,6 +45,7 @@ export const RestaurantCardContainer = () => {
       >
         Top Rated Restaurants
       </Button>
+
       <div
         style={{
           display: "flex",
@@ -56,19 +56,25 @@ export const RestaurantCardContainer = () => {
           padding: "2rem",
         }}
       >
-        {listOfRestaurant.map((restaurant, index) => (
-          <RestaurantCard
-            key={index}
-            name={restaurant.info.name}
-            cuisine={restaurant.info.cuisines.slice(0, 5).join(", ")}
-            rating={`⭐ ${
-              restaurant.info.avgRating ? restaurant.info.avgRating : "N/A"
-            }`}
-            deliveryTime={`🕒 ${restaurant.info.sla.deliveryTime} min`}
-            imgUrl={`${imgUrl}/${restaurant.info.cloudinaryImageId}`}
-            isLoading={isLoading}
-          />
-        ))}
+        {isLoading ? (
+          <Shimmer count={12} />
+        ) : (
+          <>
+            {listOfRestaurant.map((restaurant, index) => (
+              <RestaurantCard
+                key={index}
+                name={restaurant.info.name}
+                cuisine={restaurant.info.cuisines.slice(0, 5).join(", ")}
+                rating={`⭐ ${
+                  restaurant.info.avgRating ? restaurant.info.avgRating : "N/A"
+                }`}
+                deliveryTime={`🕒 ${restaurant.info.sla.deliveryTime} min`}
+                imgUrl={`${imgUrl}/${restaurant.info.cloudinaryImageId}`}
+                isLoading={isLoading}
+              />
+            ))}
+          </>
+        )}
       </div>
     </>
   );

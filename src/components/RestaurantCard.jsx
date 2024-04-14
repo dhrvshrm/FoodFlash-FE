@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 
 export const RestaurantCard = (props) => {
   const propsArr = Object.values(props);
+
   return (
     <div
       style={{
