@@ -1,30 +1,50 @@
 import { Typography } from "@mui/material";
 
 export const RestaurantCard = (props) => {
+  const propsArr = Object.values(props);
   return (
     <div
       style={{
         border: "2px solid black",
-        textAlign: "center",
-        width: "17rem",
+        width: "15rem",
+        cursor: "pointer",
+        borderRadius: "1.5rem 1.5rem 0 0",
+        display: "flex",
+        flexDirection: "column",
+        padding: "1.5rem 1.5rem 1rem 1.5rem",
       }}
     >
       <img
-        src="https://img.freepik.com/free-photo/chicken-wings-barbecue-sweetly-sour-sauce-picnic-summer-menu-tasty-food-top-view-flat-lay_2829-6471.jpg?size=626&ext=jpg&ga=GA1.1.1224184972.1711843200&semt=sph"
+        src={props.imgUrl}
         style={{
           objectFit: "cover",
-          marginX: "1rem",
-          marginTop: "1rem",
           height: "12rem",
           width: "14rem",
+          borderRadius: "1rem",
+          alignSelf: "center",
         }}
-        alt="restaurant"
+        alt="Restaurant"
       />
-      <div style={{ lineHeight: "0.2rem", paddingBottom: "0.5rem" }}>
-        <Typography variant="h6">{props.name}</Typography>
-        <Typography variant="subtitle1">{props.cuisine}</Typography>
-        <Typography variant="subtitle2">{props.rating}</Typography>
-        <Typography variant="subtitle2">{props.deliveryTime}</Typography>
+      <div
+        style={{
+          marginTop: "1rem",
+          marginLeft: "1rem",
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 700,
+            marginBottom: "0.5rem",
+          }}
+        >
+          {props.name}
+        </Typography>
+        {propsArr.slice(1, 4).map((item) => (
+          <Typography variant="body1" sx={{ fontWeight: 500 }} key={item}>
+            {item}
+          </Typography>
+        ))}
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-import { cardData } from "../constants";
 import { RestaurantCardContainer } from "./RestaurantCardContainer";
 import Search from "./Search";
 
@@ -14,7 +13,7 @@ export default function Body() {
       }}
     >
       <Search />
-      <RestaurantCardContainer data={cardData} />
+      <RestaurantCardContainer />
     </div>
   );
 }
