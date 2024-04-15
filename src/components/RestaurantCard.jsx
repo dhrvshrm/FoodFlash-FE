@@ -6,10 +6,8 @@ export const RestaurantCard = (props) => {
   return (
     <div
       style={{
-        border: "2px solid black",
         width: "15rem",
         cursor: "pointer",
-        borderRadius: "1.5rem 1.5rem 0 0",
         display: "flex",
         flexDirection: "column",
         padding: "1.5rem 1.5rem 1rem 1.5rem",
@@ -28,7 +26,7 @@ export const RestaurantCard = (props) => {
       />
       <div
         style={{
-          marginTop: "1rem",
+          marginTop: "0.5rem",
           marginLeft: "1rem",
         }}
       >
