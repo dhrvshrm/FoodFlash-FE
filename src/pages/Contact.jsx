@@ -75,16 +75,16 @@ const ContactPage = () => {
           spacing={2}
         >
           <Grid item>
-            <EmailOutlinedIcon color="primary" style={{ fontSize: 40 }} />
+            <EmailOutlinedIcon color="primary" sx={{ fontSize: 32 }} />
           </Grid>
           <Grid item>
-            <Typography variant="body1">contact@example.com</Typography>
+            <Typography variant="body1">shrmdhruv11@gmail.com</Typography>
           </Grid>
           <Grid item>
-            <LinkedInIcon color="primary" style={{ fontSize: 40 }} />
+            <LinkedInIcon color="primary" sx={{ fontSize: 32 }} />
           </Grid>
           <Grid item>
-            <Typography variant="body1">Your LinkedIn Profile</Typography>
+            <Typography variant="body1">dhrv-shrm</Typography>
           </Grid>
         </Grid>
       </Paper>
