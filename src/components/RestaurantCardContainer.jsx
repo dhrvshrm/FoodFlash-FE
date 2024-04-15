@@ -33,12 +33,10 @@ export const RestaurantCardContainer = () => {
   }
 
   useEffect(() => {
-    fetchData();
-
-    if (searchText === "" || listOfRestaurant.length === 0) {
+    if (searchText === "" || listOfRestaurant?.length === 0) {
       fetchData();
     }
-  }, [listOfRestaurant.length, searchText]);
+  }, [listOfRestaurant?.length, searchText]);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -47,7 +45,7 @@ export const RestaurantCardContainer = () => {
     );
     const json = await data.json();
     const { restaurants } =
-      json.data.cards[4].card.card.gridElements.infoWithStyle;
+      json.data.cards[3].card.card.gridElements?.infoWithStyle;
     setIsLoading(false);
     setListOfRestaurant(restaurants);
   };
@@ -113,7 +111,7 @@ export const RestaurantCardContainer = () => {
           <Shimmer count={12} />
         ) : (
           <>
-            {listOfRestaurant.map((restaurant, index) => (
+            {listOfRestaurant?.map((restaurant, index) => (
               <RestaurantCard
                 key={index}
                 name={restaurant.info.name}
