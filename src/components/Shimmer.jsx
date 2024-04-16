@@ -5,10 +5,8 @@ export default function Shimmer({ count }) {
     <div
       key={index}
       style={{
-        border: "2px solid black",
-        width: "15rem",
+        width: "18rem",
         cursor: "pointer",
-        borderRadius: "1.5rem 1.5rem 0 0",
         display: "flex",
         flexDirection: "column",
         padding: "1.5rem 1.5rem 1rem 1.5rem",
@@ -18,7 +16,7 @@ export default function Shimmer({ count }) {
       <div
         style={{
           height: "12rem",
-          width: "14rem",
+          width: "17rem",
           borderRadius: "1rem",
           alignSelf: "center",
           backgroundColor: "lightgray",

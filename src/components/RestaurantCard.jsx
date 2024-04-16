@@ -6,7 +6,7 @@ export const RestaurantCard = (props) => {
   return (
     <div
       style={{
-        width: "15rem",
+        width: "18rem",
         cursor: "pointer",
         display: "flex",
         flexDirection: "column",
@@ -18,7 +18,7 @@ export const RestaurantCard = (props) => {
         style={{
           objectFit: "cover",
           height: "12rem",
-          width: "14rem",
+          width: "17rem",
           borderRadius: "1rem",
           alignSelf: "center",
         }}
