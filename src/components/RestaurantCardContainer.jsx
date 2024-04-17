@@ -6,6 +6,7 @@ import { Button, Input } from "@mui/material";
 
 export const RestaurantCardContainer = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  console.log("listOfRestaurant", listOfRestaurant);
   const [isLoading, setIsLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
   console.log("searchText", searchText);
@@ -126,6 +127,7 @@ export const RestaurantCardContainer = () => {
                 deliveryTime={`🕒 ${restaurant.info.sla.deliveryTime} min`}
                 imgUrl={`${imgUrl}/${restaurant.info.cloudinaryImageId}`}
                 isLoading={isLoading}
+                id={restaurant.info.id}
               />
             ))}
           </>
