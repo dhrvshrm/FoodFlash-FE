@@ -1,7 +1,13 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export const RestaurantCard = (props) => {
+  const navigate = useNavigate();
   const propsArr = Object.values(props);
+  function onCardClick() {
+    console.log("Card clicked:", props.id);
+    navigate(`/restaurants/${props.id}`);
+  }
 
   return (
     <div
@@ -12,6 +18,7 @@ export const RestaurantCard = (props) => {
         flexDirection: "column",
         padding: "1.5rem 1.5rem 1rem 1.5rem",
       }}
+      onClick={onCardClick}
     >
       <img
         src={props.imgUrl}
@@ -24,8 +31,8 @@ export const RestaurantCard = (props) => {
         }}
         alt="Restaurant"
       />
-      <div
-        style={{
+      <Box
+        sx={{
           marginTop: "0.5rem",
           marginLeft: "1rem",
         }}
@@ -51,7 +58,7 @@ export const RestaurantCard = (props) => {
             {item}
           </Typography>
         ))}
-      </div>
+      </Box>
     </div>
   );
 };
