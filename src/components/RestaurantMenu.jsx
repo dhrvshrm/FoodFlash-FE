@@ -43,42 +43,66 @@ function RestaurantMenu() {
 
   return (
     <Stack sx={{ padding: "1rem" }} gap={1}>
-      <Typography variant="h4" fontWeight={700}>
-        {name}
-      </Typography>
-      <Typography>Cuisines: {cuisines?.join(", ")}</Typography>
-      <Typography sx={{ fontWeight: 500 }}>{costForTwoMessage}</Typography>
-      <Typography sx={{ fontWeight: 500 }}>Rating: {avgRating}</Typography>
-      <Typography sx={{ fontWeight: 500 }}>
-        Delivery Time: {sla?.deliveryTime} mins
-      </Typography>
-      <Typography sx={{ fontWeight: 600 }}>Menu:</Typography>
-
-      {itemCards.map((item, index) => (
-        <Grid
-          key={index}
-          gap={1}
+      <Stack direction="column" gap={1} sx={{ alignItems: "center" }}>
+        <Typography variant="h3" fontWeight={700}>
+          {name}
+        </Typography>
+        <Typography>{cuisines?.join(", ")}</Typography>
+        <Typography sx={{ fontWeight: 500 }}>{costForTwoMessage}</Typography>
+        <Typography sx={{ fontWeight: 500 }}>Rating: {avgRating}</Typography>
+        <Typography sx={{ fontWeight: 500 }}>
+          Delivery Time: {sla?.deliveryTime} mins
+        </Typography>
+        <Typography
           sx={{
-            border: "1px solid black",
-            padding: "0.75rem",
-            borderRadius: "0.5rem",
-            boxShadow: "0 0 5px rgba(0, 0, 0, 0.7)",
-            backgroundColor: "#f9f9f9",
-            margin: "0.5rem 0",
+            fontWeight: 600,
+            fontSize: "1.5rem",
+            textDecoration: "underline",
           }}
-          direction="row"
         >
-          <Typography key={index} variant="h6" fontWeight={700}>
-            {item.card.info.name}
-          </Typography>
-          <Typography>
-            {" "}
-            {item.card.info?.defaultPrice / 100 || 0} Rupees
-          </Typography>
+          Menu
+        </Typography>
+      </Stack>
 
-          <Typography>{item.card.info.description}</Typography>
-        </Grid>
-      ))}
+      <Stack
+        direction="row"
+        gap={2}
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "2rem",
+          padding: "2rem",
+        }}
+      >
+        {itemCards.map((item, index) => (
+          <Stack
+            key={index}
+            gap={1}
+            sx={{
+              border: "1px solid black",
+              borderRadius: "0.5rem",
+              boxShadow: "0 0 5px rgba(0, 0, 0, 0.7)",
+              backgroundColor: "#f9f9f9",
+              width: "13rem",
+              height: "100%",
+              overflowY: "hidden",
+              textOverflow: "ellipsis",
+              padding: "1rem",
+            }}
+          >
+            <Typography key={index} variant="h6" fontWeight={700}>
+              {item.card.info.name}
+            </Typography>
+            <Typography>
+              {" "}
+              {item.card.info?.defaultPrice / 100 || 0} Rupees
+            </Typography>
+
+            <Typography>{item.card.info.description}</Typography>
+          </Stack>
+        ))}
+      </Stack>
     </Stack>
   );
 }
