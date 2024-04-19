@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Typography, Stack } from "@mui/material";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
