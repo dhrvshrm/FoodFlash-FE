@@ -1,26 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Typography, Stack } from "@mui/material";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { useRestaurantMenu } from "../hooks/useRestaurantMenu";
+import { useOnlineStatus } from "../hooks/uesOnlineStatus";
 
 function RestaurantMenu() {
   const params = useParams();
   const { id } = params;
   const { menuData, loading, error } = useRestaurantMenu(id);
+  const { isOnline } = useOnlineStatus();
+
+  console.log({ isOnline });
+
+  if (loading) return <Shimmer count={12} />;
+  if (error) return <Typography>{error}</Typography>;
+
   const { cuisines, name, costForTwoMessage, avgRating, sla } =
     menuData.cards[2].card.card.info;
   const { itemCards } =
     menuData.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
       ?.card || [];
 
-  if (loading) return <Shimmer count={12} />;
-
-  if (error) return <Typography>{error}</Typography>;
+  console.log("menuData:", menuData);
 
   if (!menuData || !menuData.cards || !menuData.cards[2]?.card?.card?.info) {
     return <Typography>No menu data available</Typography>;
   }
+
+  console.log({ itemCards });
 
   if (!itemCards || itemCards.length === 0) {
     return <Typography>No items available in the menu</Typography>;
