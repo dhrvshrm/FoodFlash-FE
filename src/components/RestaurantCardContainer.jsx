@@ -34,10 +34,10 @@ export const RestaurantCardContainer = () => {
   }
 
   useEffect(() => {
-    if (searchText === "" || listOfRestaurant?.length === 0) {
+    if (searchText === "") {
       fetchData();
     }
-  }, [listOfRestaurant?.length, searchText]);
+  }, [searchText]);
 
   const fetchData = async () => {
     setIsLoading(true);
