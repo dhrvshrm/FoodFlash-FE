@@ -3,13 +3,28 @@ import { RestaurantCard } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import FilterBtn from "./FilterBtn";
 import { Button, Input } from "@mui/material";
+import UserOffline from "./userOffline";
 
 export const RestaurantCardContainer = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
-  console.log("listOfRestaurant", listOfRestaurant);
   const [isLoading, setIsLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
-  console.log("searchText", searchText);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  const updateOnlineStatus = () => {
+    setIsOnline(navigator.onLine);
+  };
+
+  useEffect(() => {
+    window.addEventListener("online", updateOnlineStatus);
+    window.addEventListener("offline", updateOnlineStatus);
+    return () => {
+      window.removeEventListener("online", updateOnlineStatus);
+      window.removeEventListener("offline", updateOnlineStatus);
+    };
+  }, []);
+
+  console.log({ isOnline });
 
   const handleSearch = () => {
     console.log("Search for: ", searchText);
@@ -34,10 +49,10 @@ export const RestaurantCardContainer = () => {
   }
 
   useEffect(() => {
-    if (searchText === "" || listOfRestaurant?.length === 0) {
+    if (searchText === "") {
       fetchData();
     }
-  }, [listOfRestaurant?.length, searchText]);
+  }, [searchText]);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -57,7 +72,6 @@ export const RestaurantCardContainer = () => {
 
   return (
     <>
-      <FilterBtn handleFilterClick={handleFilterClick} />
       <div
         style={{
           display: "flex",
@@ -68,6 +82,7 @@ export const RestaurantCardContainer = () => {
           backgroundColor: " #c0d6e4",
         }}
       >
+        <FilterBtn handleFilterClick={handleFilterClick} />
         <Input
           placeholder="Search for your Favourite Dishes ... "
           autoFocus={false}
@@ -97,42 +112,49 @@ export const RestaurantCardContainer = () => {
             "&:hover": {
               backgroundColor: " #c0d6e4",
             },
+            fontWeight: 600,
           }}
         >
           Search
         </Button>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "2rem",
-          border: "2px solid black",
-          padding: "2rem",
-        }}
-      >
-        {isLoading ? (
-          <Shimmer count={12} />
-        ) : (
-          <>
-            {listOfRestaurant?.map((restaurant, index) => (
-              <RestaurantCard
-                key={index}
-                name={restaurant.info.name}
-                cuisine={restaurant.info.cuisines.slice(0, 5).join(", ")}
-                rating={`⭐ ${
-                  restaurant.info.avgRating ? restaurant.info.avgRating : "N/A"
-                }`}
-                deliveryTime={`🕒 ${restaurant.info.sla.deliveryTime} min`}
-                imgUrl={`${imgUrl}/${restaurant.info.cloudinaryImageId}`}
-                isLoading={isLoading}
-                id={restaurant.info.id}
-              />
-            ))}
-          </>
-        )}
-      </div>
+      {!isOnline ? (
+        <UserOffline />
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "2rem",
+            border: "2px solid black",
+            padding: "2rem",
+          }}
+        >
+          {isLoading ? (
+            <Shimmer count={12} />
+          ) : (
+            <>
+              {listOfRestaurant?.map((restaurant, index) => (
+                <RestaurantCard
+                  key={index}
+                  name={restaurant.info.name}
+                  cuisine={restaurant.info.cuisines.slice(0, 5).join(", ")}
+                  rating={`⭐ ${
+                    restaurant.info.avgRating
+                      ? restaurant.info.avgRating
+                      : "N/A"
+                  }`}
+                  deliveryTime={`🕒 ${restaurant.info.sla.deliveryTime} min`}
+                  imgUrl={`${imgUrl}/${restaurant.info.cloudinaryImageId}`}
+                  isLoading={isLoading}
+                  id={restaurant.info.id}
+                />
+              ))}
+            </>
+          )}
+        </div>
+      )}
     </>
   );
 };

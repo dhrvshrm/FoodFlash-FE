@@ -1,52 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Typography, Stack } from "@mui/material";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
+import { useRestaurantMenu } from "../hooks/useRestaurantMenu";
+import { useOnlineStatus } from "../hooks/uesOnlineStatus";
 
 function RestaurantMenu() {
-  const [menuData, setMenuData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   const params = useParams();
   const { id } = params;
+  const { menuData, loading, error } = useRestaurantMenu(id);
+  const { isOnline } = useOnlineStatus();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  // const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
-  const URL = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.95250&lng=75.71050&restaurantId=`;
-
-  async function fetchData() {
-    try {
-      setLoading(true);
-      const response = await fetch(URL + id);
-      const data = await response.json();
-      console.log("Fetched data:", data);
-      setMenuData(data?.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setError("Error fetching data. Please try again later.");
-      setLoading(false);
-    }
-  }
-
-  console.log("menuData:", menuData);
+  console.log({ isOnline });
 
   if (loading) return <Shimmer count={12} />;
   if (error) return <Typography>{error}</Typography>;
-
-  if (!menuData || !menuData.cards || !menuData.cards[2]?.card?.card?.info) {
-    return <Typography>No menu data available</Typography>;
-  }
 
   const { cuisines, name, costForTwoMessage, avgRating, sla } =
     menuData.cards[2].card.card.info;
   const { itemCards } =
     menuData.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
       ?.card || [];
+
+  console.log("menuData:", menuData);
+
+  if (!menuData || !menuData.cards || !menuData.cards[2]?.card?.card?.info) {
+    return <Typography>No menu data available</Typography>;
+  }
+
   console.log({ itemCards });
 
   if (!itemCards || itemCards.length === 0) {
