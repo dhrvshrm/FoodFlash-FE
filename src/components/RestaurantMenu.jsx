@@ -1,53 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Typography, Stack } from "@mui/material";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
+import { useRestaurantMenu } from "../hooks/useRestaurantMenu";
 
 function RestaurantMenu() {
-  const [menuData, setMenuData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   const params = useParams();
   const { id } = params;
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  // const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
-  const URL = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.95250&lng=75.71050&restaurantId=`;
-
-  async function fetchData() {
-    try {
-      setLoading(true);
-      const response = await fetch(URL + id);
-      const data = await response.json();
-      console.log("Fetched data:", data);
-      setMenuData(data?.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setError("Error fetching data. Please try again later.");
-      setLoading(false);
-    }
-  }
-
-  console.log("menuData:", menuData);
-
-  if (loading) return <Shimmer count={12} />;
-  if (error) return <Typography>{error}</Typography>;
-
-  if (!menuData || !menuData.cards || !menuData.cards[2]?.card?.card?.info) {
-    return <Typography>No menu data available</Typography>;
-  }
-
+  const { menuData, loading, error } = useRestaurantMenu(id);
   const { cuisines, name, costForTwoMessage, avgRating, sla } =
     menuData.cards[2].card.card.info;
   const { itemCards } =
     menuData.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
       ?.card || [];
-  console.log({ itemCards });
+
+  if (loading) return <Shimmer count={12} />;
+
+  if (error) return <Typography>{error}</Typography>;
+
+  if (!menuData || !menuData.cards || !menuData.cards[2]?.card?.card?.info) {
+    return <Typography>No menu data available</Typography>;
+  }
 
   if (!itemCards || itemCards.length === 0) {
     return <Typography>No items available in the menu</Typography>;
