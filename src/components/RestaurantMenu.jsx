@@ -22,13 +22,37 @@ function RestaurantMenu() {
     menuData.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
       ?.card || [];
 
-  console.log("menuData:", menuData);
+  console.log({ itemCards });
+
+  function getCategories() {
+    const categories = [];
+    for (let i = 0; i < itemCards.length; i++) {
+      if (
+        itemCards[i].card.card?.info.category ||
+        itemCards[i].card.info.category
+      ) {
+        categories.push(
+          itemCards[i].card.info.category ||
+            itemCards[i].card.card.info.category
+        );
+      }
+    }
+
+    function unique(value, index, self) {
+      return self.indexOf(value) === index;
+    }
+
+    const uniqueCategories = categories.filter(unique);
+
+    console.log({ uniqueCategories }); // ["Veg Pizza", "Non Veg Pizza", "Garlic Bread", "Pasta", "Drinks & Desserts", "Flat Menu @179"]
+    return uniqueCategories;
+  }
+
+  getCategories();
 
   if (!menuData || !menuData.cards || !menuData.cards[2]?.card?.card?.info) {
     return <Typography>No menu data available</Typography>;
   }
-
-  console.log({ itemCards });
 
   if (!itemCards || itemCards.length === 0) {
     return <Typography>No items available in the menu</Typography>;
