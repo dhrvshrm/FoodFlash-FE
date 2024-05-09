@@ -36,7 +36,7 @@ function ResCategory({ data }) {
         }}
       >
         <Typography variant="body1" fontWeight={700}>
-          {data?.title}
+          {data?.title} ({data?.itemCards?.length})
         </Typography>
         <KeyboardArrowDownIcon
           cursor="pointer"

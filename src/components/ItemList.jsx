@@ -15,8 +15,7 @@ function ItemList({ itemCards }) {
         >
           <Box>
             <Typography variant="body1" fontWeight={700}>
-              {item?.card?.info?.name} @ {item?.card?.info?.defaultPrice / 100}{" "}
-              Rupees
+              {item?.card?.info?.name} - @ {item.card.info.defaultPrice / 100}
             </Typography>
             <Typography variant="body2" sx={{ color: "black" }}>
               {item?.card?.info?.description} -{" "}
