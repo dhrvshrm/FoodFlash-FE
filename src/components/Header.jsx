@@ -1,4 +1,5 @@
-import React from "react";
+import { Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const items = [
@@ -10,6 +11,21 @@ const items = [
 ];
 
 export const Header = () => {
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  const updateOnlineStatus = () => {
+    setIsOnline(navigator.onLine);
+  };
+
+  useEffect(() => {
+    window.addEventListener("online", updateOnlineStatus);
+    window.addEventListener("offline", updateOnlineStatus);
+    return () => {
+      window.removeEventListener("online", updateOnlineStatus);
+      window.removeEventListener("offline", updateOnlineStatus);
+    };
+  }, []);
+
   return (
     <div
       style={{
@@ -33,6 +49,18 @@ export const Header = () => {
           fontWeight: "700",
         }}
       >
+        {isOnline && (
+          <Typography
+            sx={{
+              margin: "0rem 1rem",
+              textDecoration: "none",
+              color: isOnline ? "green" : "red",
+            }}
+          >
+            {isOnline ? "Online ✅" : "Offline ❌"}
+          </Typography>
+        )}
+
         {items.map((item, index) => (
           <Link
             key={index}

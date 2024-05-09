@@ -3,7 +3,7 @@ import { RestaurantCard } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import FilterBtn from "./FilterBtn";
 import { Button, Input } from "@mui/material";
-import UserOffline from "./userOffline";
+import UserOffline from "./UserOffline";
 
 export const RestaurantCardContainer = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -54,6 +54,11 @@ export const RestaurantCardContainer = () => {
     }
   }, [searchText]);
 
+  function handleReset() {
+    setSearchText("");
+    fetchData();
+  }
+
   const fetchData = async () => {
     setIsLoading(true);
     const data = await fetch(
@@ -77,12 +82,31 @@ export const RestaurantCardContainer = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          border: "2px solid black",
           borderRadius: "1rem",
           backgroundColor: " #c0d6e4",
         }}
       >
         <FilterBtn handleFilterClick={handleFilterClick} />
+        <Button
+          onClick={handleReset}
+          sx={{
+            height: "2rem",
+            width: "5rem",
+            borderRadius: "1rem",
+            backgroundColor: "lightGray",
+            cursor: "pointer",
+            color: "black",
+            border: "1px solid black",
+            textTransform: "none",
+            "&:hover": {
+              backgroundColor: " #c0d6e4",
+            },
+            fontWeight: 600,
+          }}
+        >
+          Reset
+        </Button>
+
         <Input
           placeholder="Search for your Favourite Dishes ... "
           autoFocus={false}
@@ -127,7 +151,6 @@ export const RestaurantCardContainer = () => {
             flexWrap: "wrap",
             justifyContent: "center",
             gap: "2rem",
-            border: "2px solid black",
             padding: "2rem",
           }}
         >

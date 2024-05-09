@@ -1,9 +1,10 @@
-import React from "react";
-import { Typography, Stack } from "@mui/material";
+import React, { useState } from "react";
+import { Typography, Stack, Box } from "@mui/material";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { useRestaurantMenu } from "../hooks/useRestaurantMenu";
 import { useOnlineStatus } from "../hooks/uesOnlineStatus";
+import ResCategory from "./REstaurantCategory";
 
 function RestaurantMenu() {
   const params = useParams();
@@ -11,24 +12,28 @@ function RestaurantMenu() {
   const { menuData, loading, error } = useRestaurantMenu(id);
   const { isOnline } = useOnlineStatus();
 
-  console.log({ isOnline });
-
   if (loading) return <Shimmer count={12} />;
   if (error) return <Typography>{error}</Typography>;
 
   const { cuisines, name, costForTwoMessage, avgRating, sla } =
     menuData.cards[2].card.card.info;
+
   const { itemCards } =
     menuData.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
       ?.card || [];
 
-  console.log("menuData:", menuData);
+  const categoryCards =
+    menuData.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+
+  const filteredCategoryCards = categoryCards.filter(
+    (category) =>
+      category.card?.["card"]?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
 
   if (!menuData || !menuData.cards || !menuData.cards[2]?.card?.card?.info) {
     return <Typography>No menu data available</Typography>;
   }
-
-  console.log({ itemCards });
 
   if (!itemCards || itemCards.length === 0) {
     return <Typography>No items available in the menu</Typography>;
@@ -59,53 +64,9 @@ function RestaurantMenu() {
           Menu
         </Typography>
       </Stack>
-
-      <Stack
-        direction="row"
-        gap={2}
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "2rem",
-          padding: "2rem",
-        }}
-      >
-        {itemCards.map((item, index) => (
-          <Stack
-            key={index}
-            gap={1}
-            sx={{
-              border: "1px solid black",
-              borderRadius: "0.5rem",
-              boxShadow: "0 0 5px rgba(0, 0, 0, 0.7)",
-              backgroundColor: "#f9f9f9",
-              width: "13rem",
-              height: "100%",
-              overflowY: "hidden",
-              textOverflow: "ellipsis",
-              padding: "1rem",
-            }}
-          >
-            {/* <img
-              src={item.card.info.imageSrc}
-              alt={item.card.info.name}
-              style={{
-                width: "100%",
-                height: "auto",
-                borderRadius: "0.5rem 0.5rem 0 0",
-              }}
-            /> */}
-            <Typography key={index} variant="h6" fontWeight={700}>
-              {item.card.info.name}
-            </Typography>
-            <Typography>
-              {item.card.info?.defaultPrice / 100 || 0} Rupees
-            </Typography>
-            <Typography>{item.card.info.description}</Typography>
-          </Stack>
-        ))}
-      </Stack>
+      {filteredCategoryCards.map((category) => (
+        <ResCategory data={category?.card?.card} />
+      ))}
     </Stack>
   );
 }
