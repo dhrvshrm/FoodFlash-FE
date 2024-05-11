@@ -13,32 +13,39 @@ function ItemList({ itemCards }) {
           sx={{
             paddingY: "16px",
             paddingX: "20px",
-            backgroundColor: "#f9f9f9",
             justifyContent: "space-between",
-            height: "8rem",
+            height: "10rem",
             border: "solid lightgray 1px",
             alignItems: "center",
             borderRadius: "0.5rem",
             cursor: "pointer",
-            my: "1.2rem",
+            my: "1.75rem",
+            mx: "1rem",
+            backgroundColor: "white",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.05)",
           }}
         >
-          <Stack direction="row" gap={2}>
+          <Stack direction="row" gap={3}>
             <Box
               sx={{
-                backgroundColor: "lightgray",
                 borderRadius: "0.5rem",
-                width: "7.2rem",
-                height: "7.2rem",
+                width: "12rem",
+                height: "8.5rem",
+                border: "solid lightgray 1px",
+                backgroundColor: "white",
               }}
             >
               <img
-                src={`${imgUrl}/${item?.card?.info?.imageId}`}
+                src={
+                  item?.card?.info.imageId !== undefined
+                    ? `${imgUrl}/${item?.card?.info.imageId}`
+                    : `https://i.pinimg.com/564x/7a/8a/09/7a8a09abb9c1437904978539764111bd.jpg`
+                }
                 alt={item?.card?.info?.name}
                 style={{
-                  objectFit: "cover",
-                  width: "7.2rem",
-                  height: "7.2rem",
+                  objectFit: "fill",
+                  width: "12rem",
+                  height: "8.5rem",
                   borderRadius: "0.5rem",
                 }}
               />
@@ -50,13 +57,17 @@ function ItemList({ itemCards }) {
                 gap: 1,
               }}
             >
-              <Typography variant="body1" fontWeight={700}>
+              <Typography variant="body1" fontWeight={600}>
                 {item?.card?.info?.name} @{" "}
                 {item.card.info.defaultPrice / 100 ||
                   item.card.info.price / 100}{" "}
-                $
+                ₹
               </Typography>
-              <Typography variant="body2" sx={{ color: "black" }}>
+              <Typography
+                variant="body2"
+                sx={{ color: "black" }}
+                fontWeight={500}
+              >
                 {item?.card?.info?.description} -{" "}
               </Typography>
             </Stack>

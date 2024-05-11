@@ -69,7 +69,8 @@ export const RestaurantCardContainer = () => {
     });
     const { restaurants } =
       json.data.cards[3].card.card.gridElements?.infoWithStyle ||
-      json.data.cards[4].card.card.gridElements?.infoWithStyle;
+      json.data.cards[4].card.card.gridElements?.infoWithStyle ||
+      [];
     setIsLoading(false);
     setListOfRestaurant(restaurants);
   };
