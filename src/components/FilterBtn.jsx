@@ -2,7 +2,6 @@ import { Button } from "@mui/material";
 import React from "react";
 
 function FilterBtn({ handleFilterClick }) {
-  console.log(typeof handleFilterClick);
   return (
     <div>
       {" "}

@@ -5,7 +5,6 @@ export const RestaurantCard = (props) => {
   const navigate = useNavigate();
   const propsArr = Object.values(props);
   function onCardClick() {
-    console.log("Card clicked:", props.id);
     navigate(`/restaurants/${props.id}`);
   }
 
