@@ -1,17 +1,17 @@
 import { Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../store/context/userContext";
 
 const items = [
   { name: "Home", path: "/" },
-  // { name: "Products", path: "/products" },
-  // { name: "Cart", path: "/cart" },
   { name: "About Us", path: "/about" },
   { name: "Contact", path: "/contact" },
 ];
 
 export const Header = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const { user } = useContext(UserContext);
 
   const updateOnlineStatus = () => {
     setIsOnline(navigator.onLine);
@@ -46,6 +46,9 @@ export const Header = () => {
         }}
         alt="Logo"
       />
+      <Typography variant="h4" style={{ margin: "0rem 2rem" }}>
+        {user}
+      </Typography>
       <div
         style={{
           display: "flex",
