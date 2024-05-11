@@ -11,6 +11,7 @@ export const RestaurantCardContainer = () => {
   const [searchText, setSearchText] = useState("");
   const [isOnline, setIsOnline] = useState(navigator.onLine);
 
+  const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
   const updateOnlineStatus = () => {
     setIsOnline(navigator.onLine);
   };
@@ -38,8 +39,6 @@ export const RestaurantCardContainer = () => {
     );
     setListOfRestaurant(filteredList);
   };
-
-  const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
 
   function handleFilterClick() {
     const filteredList = listOfRestaurant.filter(
@@ -70,7 +69,8 @@ export const RestaurantCardContainer = () => {
     });
     const { restaurants } =
       json.data.cards[3].card.card.gridElements?.infoWithStyle ||
-      json.data.cards[4].card.card.gridElements?.infoWithStyle;
+      json.data.cards[4].card.card.gridElements?.infoWithStyle ||
+      [];
     setIsLoading(false);
     setListOfRestaurant(restaurants);
   };

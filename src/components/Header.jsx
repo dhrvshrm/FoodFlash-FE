@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 const items = [
   { name: "Home", path: "/" },
-  { name: "Products", path: "/products" },
+  // { name: "Products", path: "/products" },
+  // { name: "Cart", path: "/cart" },
   { name: "About Us", path: "/about" },
-  { name: "Cart", path: "/cart" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -38,8 +38,12 @@ export const Header = () => {
       }}
     >
       <img
-        src="https://img.freepik.com/free-psd/persian-isolated-transparent-background_191095-39702.jpg?w=740&t=st=1711897038~exp=1711897638~hmac=d3eb10a98a4ebb52842cf0b1733879fae6d3ccb9e83b36995e381bb95dc63513s"
-        style={{ height: "4em", width: "4rem", margin: "0.25rem 2rem" }}
+        src="https://img.freepik.com/free-psd/bell-isolated-transparent-background_191095-26127.jpg?t=st=1715367621~exp=1715371221~hmac=189e21143e391d6a64837c837432e246eecb2235dcd4bde86603a5d4ecf72f34&w=740"
+        style={{
+          height: "4em",
+          width: "4rem",
+          margin: "0.25rem 2rem",
+        }}
         alt="Logo"
       />
       <div

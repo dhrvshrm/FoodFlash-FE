@@ -3,6 +3,8 @@ import { useState } from "react";
 import ItemList from "./ItemList";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
+// const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
+
 function ResCategory({ data }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,16 +17,17 @@ function ResCategory({ data }) {
     <Stack
       direction="column"
       sx={{
-        paddingY: "16px",
+        paddingY: "1.6rem",
         paddingX: "20px",
-        width: "50%",
-        border: "solid black 1px",
-        backgroundColor: "#f9f9f9",
+        width: "60%",
+        border: "solid lightgray 1px",
         justifyContent: "space-between",
         borderRadius: "0.5rem",
         cursor: "pointer",
         alignSelf: "center",
         my: "1.2rem",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+        backgroundColor: "#f9f9f9",
       }}
     >
       <Stack
@@ -35,8 +38,8 @@ function ResCategory({ data }) {
           justifyContent: "space-between",
         }}
       >
-        <Typography variant="body1" fontWeight={700}>
-          {data?.title}
+        <Typography variant="body1" fontWeight={700} fontSize={18}>
+          {data?.title} ({data?.itemCards?.length})
         </Typography>
         <KeyboardArrowDownIcon
           cursor="pointer"
