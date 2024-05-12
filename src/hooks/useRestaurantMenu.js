@@ -16,11 +16,9 @@ export function useRestaurantMenu(id) {
       setLoading(true);
       const response = await fetch(URL + id);
       const data = await response.json();
-      console.log("Fetched data:", data);
       setMenuData(data?.data);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
       setError("Error fetching data. Please try again later.");
       setLoading(false);
     }

@@ -9,7 +9,6 @@ function ResCategory({ data }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleArrowClick = () => {
-    console.log("Arrow clicked");
     setIsOpen((prev) => !prev);
   };
 
