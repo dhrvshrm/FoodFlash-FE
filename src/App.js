@@ -1,7 +1,9 @@
-import "./App.css";
-import { Outlet } from "react-router-dom";
-import { Header } from "./components/Header";
 import { useEffect, useState } from "react";
+import { Provider } from "react-redux";
+import { Outlet } from "react-router-dom";
+import "./App.css";
+import { Header } from "./components/Header";
+import appStore from "./store/appStore";
 import UserContext from "./store/context/userContext";
 
 function App() {
@@ -18,12 +20,14 @@ function App() {
   }, []);
 
   return (
-    <UserContext.Provider value={userData}>
-      <div>
-        <Header />
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={userData}>
+        <div>
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 }
 

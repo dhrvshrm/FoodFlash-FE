@@ -1,12 +1,21 @@
 import { Box, Stack, Typography } from "@mui/material";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { useDispatch } from "react-redux";
+import { addItem } from "../store/slices/cardSlice";
 
 function ItemList({ itemCards }) {
   const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (item) => {
+    dispatch(addItem(item.name));
+  };
 
   return (
     <Stack>
       {itemCards?.map((item) => (
         <Stack
+          key={item.card.info.id}
           direction="row"
           sx={{
             paddingY: "16px",
@@ -31,6 +40,7 @@ function ItemList({ itemCards }) {
                 height: "8.5rem",
                 border: "solid lightgray 1px",
                 backgroundColor: "white",
+                position: "relative",
               }}
             >
               <img
@@ -47,6 +57,30 @@ function ItemList({ itemCards }) {
                   borderRadius: "0.5rem",
                 }}
               />
+              <Box
+                sx={{
+                  position: "absolute",
+                  bottom: "5px",
+                  right: "5px",
+                  backgroundColor: "white",
+                  boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
+                  width: "fit-content",
+                  height: "2rem",
+                  borderRadius: "0.5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  paddingX: "0.5rem",
+                }}
+                onClick={() => handleAddToCart(item.card.info)}
+              >
+                <Stack direction="row" sx={{ alignItems: "center" }} gap={0.5}>
+                  <Typography variant="body1" fontWeight={600}>
+                    Add
+                  </Typography>
+                  <AddCircleOutlineIcon />
+                </Stack>
+              </Box>
             </Box>
             <Stack
               direction="column"
