@@ -30,6 +30,8 @@ export const Header = () => {
     };
   }, []);
 
+  // feat: add online status i header
+
   return (
     <div
       style={{
@@ -37,9 +39,12 @@ export const Header = () => {
         alignItems: "center",
         justifyContent: "space-between",
         backgroundColor: "#c0d6e4",
-        margin: "0.5rem",
+        margin: "0rem 2rem",
+        marginBottom: "0.5rem",
         borderRadius: "1rem",
-        height: "5rem",
+        height: "6rem",
+        position: "sticky",
+        top: "0.75rem",
       }}
     >
       <Typography variant="h4" style={{ margin: "0rem 2rem", fontWeight: 600 }}>
@@ -98,7 +103,8 @@ export const Header = () => {
                         fontSize: "0.8rem",
                       }}
                     >
-                      {item.items && cards.length > 0 && `${cards.length} `}
+                      {(item.items && cards.length > 0 && `${cards.length} `) ||
+                        0}
                     </Typography>
                   </Box>
                 )}

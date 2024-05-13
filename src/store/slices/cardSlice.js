@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const cardSlice = createSlice({
   name: "card",
   initialState: {
-    cards: ["Burger", "Pizza", "Coke", "Fries", "Shake", "Salad"],
+    cards: [],
     loading: false,
     error: null,
   },

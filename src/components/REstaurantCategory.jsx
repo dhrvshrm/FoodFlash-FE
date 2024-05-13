@@ -47,7 +47,7 @@ function ResCategory({ data }) {
           }}
         />
       </Stack>
-      {isOpen && <ItemList itemCards={data?.itemCards} />}
+      {isOpen && <ItemList itemCards={data?.itemCards} isOpen={isOpen} />}
     </Stack>
   );
 }

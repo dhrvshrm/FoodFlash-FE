@@ -3,16 +3,23 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/slices/cardSlice";
 
-function ItemList({ itemCards }) {
+function ItemList({ itemCards, isOpen }) {
   const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
   const dispatch = useDispatch();
 
   const handleAddToCart = (item) => {
-    dispatch(addItem(item.name));
+    dispatch(addItem(item));
   };
 
   return (
-    <Stack>
+    <Stack
+      sx={{
+        transition: "height 0.3s ease-in-out", // Add transition effect to height
+        height: isOpen ? "fit-content" : 0,
+        overflow: "hidden",
+        paddingY: "1.6rem",
+      }}
+    >
       {itemCards?.map((item) => (
         <Stack
           key={item.card.info.id}
@@ -21,7 +28,6 @@ function ItemList({ itemCards }) {
             paddingY: "16px",
             paddingX: "20px",
             justifyContent: "space-between",
-            height: "10rem",
             border: "solid lightgray 1px",
             alignItems: "center",
             borderRadius: "0.5rem",
@@ -30,6 +36,10 @@ function ItemList({ itemCards }) {
             mx: "1rem",
             backgroundColor: "white",
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.05)",
+            "&:hover": {
+              transform: "scale(1.02)",
+            },
+            transition: "transform 0.3s ease-in-out",
           }}
         >
           <Stack direction="row" gap={3}>
@@ -55,6 +65,7 @@ function ItemList({ itemCards }) {
                   width: "12rem",
                   height: "8.5rem",
                   borderRadius: "0.5rem",
+                  position: "relative",
                 }}
               />
               <Box

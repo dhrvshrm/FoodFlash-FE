@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export const RestaurantCard = (props) => {
@@ -9,13 +9,17 @@ export const RestaurantCard = (props) => {
   }
 
   return (
-    <div
-      style={{
+    <Stack
+      sx={{
         width: "18rem",
         cursor: "pointer",
         display: "flex",
         flexDirection: "column",
         padding: "1.5rem 1.5rem 1rem 1.5rem",
+        transition: "transform 0.3s ease-in-out",
+        "&:hover": {
+          transform: "scale(1.02)",
+        },
       }}
       onClick={onCardClick}
     >
@@ -58,6 +62,6 @@ export const RestaurantCard = (props) => {
           </Typography>
         ))}
       </Box>
-    </div>
+    </Stack>
   );
 };

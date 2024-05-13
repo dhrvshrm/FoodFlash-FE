@@ -40,32 +40,34 @@ function RestaurantMenu() {
   }
 
   return (
-    <Stack sx={{ padding: "1rem" }} gap={1}>
-      <Stack direction="column" gap={1} alignItems="center">
-        <Typography variant="h3" fontWeight={700}>
-          {name}
-        </Typography>
-        <Typography> 🍽️ {cuisines?.join(", ")}</Typography>
-        <Typography sx={{ fontWeight: 500 }}>
-          {" "}
-          🧑‍🤝‍🧑 {costForTwoMessage}
-        </Typography>
-        <Typography sx={{ fontWeight: 500 }}>⭐ {avgRating}</Typography>
-        <Typography sx={{ fontWeight: 500 }}>
-          🛵 {sla?.deliveryTime} mins
-        </Typography>
-        <Typography
-          sx={{
-            fontWeight: 600,
-            fontSize: "1.25rem",
-            textDecoration: "underline",
-          }}
-        >
-          Menu
-        </Typography>
+    <Stack sx={{ padding: "1rem", my: 3 }} gap={1}>
+      <Stack>
+        <Stack gap={1} alignItems="center" direction="column">
+          <Typography variant="h3" fontWeight={700}>
+            {name}
+          </Typography>
+          <Typography> 🍽️ {cuisines?.join(", ")}</Typography>
+          <Typography sx={{ fontWeight: 500 }}>
+            {" "}
+            🧑‍🤝‍🧑 {costForTwoMessage}
+          </Typography>
+          <Typography sx={{ fontWeight: 500 }}>⭐ {avgRating}</Typography>
+          <Typography sx={{ fontWeight: 500 }}>
+            🛵 {sla?.deliveryTime} mins
+          </Typography>
+          <Typography
+            sx={{
+              fontWeight: 600,
+              fontSize: "1.25rem",
+              textDecoration: "underline",
+            }}
+          >
+            Menu
+          </Typography>
+        </Stack>
       </Stack>
       {filteredCategoryCards.map((category) => (
-        <ResCategory data={category?.card?.card} />
+        <ResCategory data={category?.card?.card} key={category.id} />
       ))}
     </Stack>
   );
