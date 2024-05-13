@@ -92,6 +92,11 @@ function CartItem({ item }) {
   );
 }
 
+const handleClearCart = () => {
+  localStorage.removeItem("cart");
+  window.location.reload();
+};
+
 function Cart() {
   const { cards } = useSelector((state) => state.card);
 
@@ -113,23 +118,43 @@ function Cart() {
       >
         Cart
       </Typography>
-
-      <Typography variant="h6" sx={{ textAlign: "left", ml: 8, mt: 2 }}>
-        {cards.length} Items
-      </Typography>
-      {cards && cards.map((item) => <CartItem key={item.id} item={item} />)}
-      <Button
-        variant="outlined"
-        sx={{
-          margin: "20px auto",
-          display: "block",
-          textTransform: "none",
-          padding: "10px 20px",
-          fontSize: "1rem",
-        }}
+      <Stack
+        direction="row"
+        gap={1}
+        sx={{ px: 8, mt: 2, justifyContent: "space-between" }}
       >
-        Proceed to Payment
-      </Button>
+        <Typography variant="h6">
+          {cards.length ? "Items" : "Add items to your cart"}
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            cursor: "pointer",
+            color: "blue",
+            "&:hover": {
+              textDecoration: "underline",
+            },
+          }}
+          onClick={handleClearCart}
+        >
+          {cards.length === 0 ? "" : "Clear Cart"}
+        </Typography>
+      </Stack>
+      {cards && cards.map((item) => <CartItem key={item.id} item={item} />)}
+      {cards.length !== 0 && (
+        <Button
+          variant="outlined"
+          sx={{
+            margin: "20px auto",
+            display: "block",
+            textTransform: "none",
+            padding: "10px 20px",
+            fontSize: "1rem",
+          }}
+        >
+          Proceed to Payment
+        </Button>
+      )}
     </Box>
   );
 }
