@@ -1,5 +1,6 @@
+import { Box, Grid, Paper, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Button, Paper, Grid, Stack, Box } from "@mui/material";
+import LoginForm from "../components/LoginForm";
 
 const styles = {
   root: {
@@ -37,8 +38,18 @@ const styles = {
   image: {
     width: "100%",
     height: "100%",
-    // Add bottom shadow here
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 1)",
+  },
+  aboveBox: {
+    position: "absolute",
+    top: 180,
+    right: 200,
+    width: "40rem",
+    height: "33.5rem",
+    backgroundColor: "crimson",
+    zIndex: 1,
+    borderRadius: "2rem",
+    border: "1px solid crimson",
   },
 };
 
@@ -104,10 +115,16 @@ const Carousel = () => {
 
 const Login = () => {
   return (
-    <Stack direction="row">
-      <Box sx={{ width: "75%", height: "100vh", backgroundColor: "lightblue" }}>
+    <Stack direction="row" sx={{ backgroundColor: "lightgray" }}>
+      <Stack
+        direction="row"
+        sx={{ width: "75%", height: "100vh", backgroundColor: "red" }}
+      >
         <Carousel />
-      </Box>
+        <Box sx={styles.aboveBox}>
+          <LoginForm />
+        </Box>
+      </Stack>
     </Stack>
   );
 };
