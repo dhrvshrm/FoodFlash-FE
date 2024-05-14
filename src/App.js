@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Provider } from "react-redux";
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import { Header } from "./components/Header";
 import appStore from "./store/appStore";
 import UserContext from "./store/context/userContext";
+import { Provider } from "react-redux";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -19,11 +19,13 @@ function App() {
     setUserData(data);
   }, []);
 
+  const renderHeader = window.location.pathname !== "/";
+
   return (
     <Provider store={appStore}>
       <UserContext.Provider value={userData}>
         <div>
-          <Header />
+          {renderHeader && <Header />} {/* Conditionally render Header */}
           <Outlet />
         </div>
       </UserContext.Provider>

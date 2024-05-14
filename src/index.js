@@ -9,6 +9,7 @@ import Error404 from "./pages/Error404";
 import Body from "./components/Body";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Cart from "./pages/Cart";
+import Login from "./pages/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/",
-        element: <Body />,
+        element: <Login />,
       },
       {
         path: "/restaurants/:id",
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/home",
+        element: <Body />,
       },
     ],
     errorElement: <Error404 />,
