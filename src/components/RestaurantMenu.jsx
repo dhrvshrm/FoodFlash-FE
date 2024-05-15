@@ -1,16 +1,14 @@
-import React, { useState } from "react";
-import { Typography, Stack, Box } from "@mui/material";
-import Shimmer from "./Shimmer";
+import { Stack, Typography } from "@mui/material";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useRestaurantMenu } from "../hooks/useRestaurantMenu";
-import { useOnlineStatus } from "../hooks/uesOnlineStatus";
 import ResCategory from "./REstaurantCategory";
+import Shimmer from "./Shimmer";
 
 function RestaurantMenu() {
   const params = useParams();
   const { id } = params;
   const { menuData, loading, error } = useRestaurantMenu(id);
-  const { isOnline } = useOnlineStatus();
 
   if (loading) return <Shimmer count={12} />;
   if (error) return <Typography>{error}</Typography>;
