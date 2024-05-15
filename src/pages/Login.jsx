@@ -1,6 +1,9 @@
 import { Box, Grid, Paper, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import LoginForm from "../components/LoginForm";
+import Carousel2 from "../assets/Carousel1.png";
+import Carousel1 from "../assets/Carousel2.png";
+import Carousel3 from "../assets/Carousel3.png";
 
 const styles = {
   root: {
@@ -15,14 +18,15 @@ const styles = {
     transition: "transform 0.9s ease",
   },
   slide: {
-    minWidth: "100%",
+    width: "100%",
     flex: "0 0 auto",
     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.8)",
+    height: "100vh",
   },
   dotsContainer: {
     position: "absolute",
     bottom: "3rem",
-    left: "50%",
+    left: "10%",
     transform: "translateX(-50%)",
     display: "flex",
   },
@@ -42,23 +46,19 @@ const styles = {
   },
   aboveBox: {
     position: "absolute",
-    top: 180,
+    top: 250,
     right: 200,
-    width: "40rem",
-    height: "33.5rem",
-    backgroundColor: "crimson",
+    width: "32rem",
+    height: "25rem",
+    backgroundColor: "transparent",
     zIndex: 1,
     borderRadius: "2rem",
-    border: "1px solid crimson",
+    outline: "none",
   },
 };
 
 const STYLES = {
-  images: [
-    "https://w0.peakpx.com/wallpaper/495/863/HD-wallpaper-random-awesome-blue-games-nerds-red.jpg",
-    "https://w0.peakpx.com/wallpaper/495/863/HD-wallpaper-random-awesome-blue-games-nerds-red.jpg",
-    "https://images.unsplash.com/photo-1542378151504-0361b8ec8f93?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  ],
+  images: [Carousel1, Carousel2, Carousel3],
 };
 
 const Carousel = () => {
@@ -115,10 +115,10 @@ const Carousel = () => {
 
 const Login = () => {
   return (
-    <Stack direction="row" sx={{ backgroundColor: "lightgray" }}>
+    <Stack direction="row" sx={{ backgroundColor: "black" }}>
       <Stack
         direction="row"
-        sx={{ width: "75%", height: "100vh", backgroundColor: "red" }}
+        sx={{ width: "75%", height: "100vh", outline: "none" }}
       >
         <Carousel />
         <Box sx={styles.aboveBox}>

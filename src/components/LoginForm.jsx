@@ -6,7 +6,6 @@ import { TextField, Button, Box, Typography } from "@mui/material";
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -24,18 +23,18 @@ const LoginForm = () => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      height: "100%",
       border: "1px solid black",
       borderRadius: "2rem",
     },
     formContainer: {
-      maxWidth: "400px",
-      width: "35rem",
       padding: "30px",
       borderRadius: "2rem",
       boxShadow: "0 0 20px rgba(0, 0, 0, 0.2)",
       backgroundColor: "#f9f9f9",
       textAlign: "center",
+      width: "100%",
+      border: "1px solid black",
+      height: "100%",
     },
     form: {
       display: "flex",
@@ -48,23 +47,6 @@ const LoginForm = () => {
       color: "black",
       borderRadius: "1rem",
       backgroundColor: "white",
-      "&:focus": {
-        backgroundColor: "white",
-      },
-      "&:hover": {
-        backgroundColor: "white",
-      },
-      "MuiOutlinedInput-root": {
-        fieldset: {
-          borderColor: "black",
-        },
-        "&:hover fieldset": {
-          borderColor: "black",
-        },
-        "&.Mui-focused fieldset": {
-          borderColor: "black",
-        },
-      },
     },
     button: {
       margin: "10px 0",
@@ -99,6 +81,7 @@ const LoginForm = () => {
             variant="outlined"
             style={STYLES.input}
             required
+            autoComplete="off"
           />
           <TextField
             type="password"
@@ -108,6 +91,7 @@ const LoginForm = () => {
             variant="outlined"
             style={STYLES.input}
             required
+            autoComplete="off"
           />
           <Button type="submit" variant="contained" style={STYLES.button}>
             Login
