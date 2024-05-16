@@ -35,6 +35,7 @@ function CartItem({ item }) {
             height: "9.5rem",
             borderRadius: "0.5rem",
             width: "12rem",
+            fontFamily: "Poetsen One",
           }}
         />
       </Stack>
@@ -44,12 +45,20 @@ function CartItem({ item }) {
           sx={{
             fontSize: "1.2rem",
             fontWeight: 500,
+            fontFamily: "Poetsen One",
           }}
           title={item.name}
         >
           {item.name}
         </Typography>
-        <Typography variant="body2" color="textSecondary" fontWeight={500}>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          fontWeight={500}
+          sx={{
+            fontFamily: "Poetsen One",
+          }}
+        >
           @ {item.price / 100 || item.defaultPrice / 100}
         </Typography>
         <Typography
@@ -63,6 +72,7 @@ function CartItem({ item }) {
             display: "-webkit-box",
             WebkitLineClamp: 3,
             WebkitBoxOrient: "vertical",
+            fontFamily: "Poetsen One",
           }}
         >
           {item.description}
@@ -74,6 +84,7 @@ function CartItem({ item }) {
               width: ".75rem",
               borderRadius: "50%",
               backgroundColor: item.isVeg ? "green" : "red",
+              fontFamily: "Poetsen One",
             }}
           />
           <Typography
@@ -82,6 +93,7 @@ function CartItem({ item }) {
               fontSize: "1rem",
               fontWeight: 600,
               color: item.isVeg ? "green" : "red",
+              fontFamily: "Poetsen One",
             }}
           >
             {item.isVeg ? "Veg" : "Non-Veg"}
@@ -114,7 +126,12 @@ function Cart() {
     >
       <Typography
         variant="h4"
-        sx={{ textAlign: "left", ml: 8, fontWeight: 500 }}
+        sx={{
+          textAlign: "left",
+          ml: 8,
+          fontWeight: 500,
+          fontFamily: "Poetsen One",
+        }}
       >
         Cart
       </Typography>
@@ -123,7 +140,7 @@ function Cart() {
         gap={1}
         sx={{ px: 8, mt: 2, justifyContent: "space-between" }}
       >
-        <Typography variant="h6">
+        <Typography variant="h6" sx={{ fontFamily: "Poetsen One" }}>
           {cards.length ? "Items" : "Add items to your cart"}
         </Typography>
         <Typography
@@ -134,6 +151,7 @@ function Cart() {
             "&:hover": {
               textDecoration: "underline",
             },
+            fontFamily: "Poetsen One",
           }}
           onClick={handleClearCart}
         >

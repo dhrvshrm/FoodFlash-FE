@@ -45,12 +45,14 @@ const LoginForm = () => {
       color: "black",
       borderRadius: "1rem",
       backgroundColor: "white",
+      fontFamily: "Poetsen One",
     },
     button: {
       margin: "10px 0",
       width: "100%",
       backgroundColor: "black",
       color: "white",
+      fontFamily: "Poetsen One",
     },
   };
 
@@ -66,7 +68,7 @@ const LoginForm = () => {
               textAlign: "center",
               marginBottom: "1rem",
               fontSize: "2rem",
-              fontFamily: "Raleway, sans-serif",
+              fontFamily: "Poetsen One",
             }}
           >
             Login

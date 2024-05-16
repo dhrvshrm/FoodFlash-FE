@@ -47,7 +47,7 @@ export const RestaurantCard = (props) => {
             textOverflow: "ellipsis",
             overflow: "hidden",
             whiteSpace: "nowrap",
-            fontFamily: "Raleway, sans-serif",
+            fontFamily: "Poetsen One",
             fontSize: "1.2rem",
           }}
         >
@@ -55,7 +55,7 @@ export const RestaurantCard = (props) => {
         </Typography>
         {propsArr.slice(1, 4).map((item) => (
           <Typography
-            sx={{ fontWeight: 500, fontFamily: "Raleway, sans-serif" }}
+            sx={{ fontWeight: 500, fontFamily: "Poetsen One" }}
             key={item}
           >
             {item}

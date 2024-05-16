@@ -47,11 +47,15 @@ export const Header = () => {
         top: "0.75rem",
       }}
     >
-      <Typography variant="h4" style={{ margin: "0rem 2rem", fontWeight: 600 }}>
-        Zomato!
-      </Typography>
-      <Typography variant="h4" style={{ margin: "0rem 2rem" }}>
-        {user}
+      <Typography
+        variant="h4"
+        style={{
+          margin: "0rem 2rem",
+          fontWeight: 600,
+          fontFamily: "Poetsen One",
+        }}
+      >
+        FoodFlash{" "}
       </Typography>
       <div
         style={{
@@ -66,6 +70,7 @@ export const Header = () => {
               margin: "0rem 1rem",
               textDecoration: "none",
               color: isOnline ? "green" : "red",
+              fontFamily: "Poetsen One",
             }}
           >
             {isOnline ? "Online ✅" : "Offline ❌"}
@@ -83,7 +88,14 @@ export const Header = () => {
               }}
             >
               <Stack direction="row" gap={0.5} alignItems="center">
-                {item.name}
+                <Typography
+                  sx={{
+                    fontWeight: 400,
+                    fontFamily: "Poetsen One",
+                  }}
+                >
+                  {item.name}
+                </Typography>
                 {item.items && (
                   <Box
                     sx={{
@@ -97,10 +109,12 @@ export const Header = () => {
                     }}
                   >
                     <Typography
+                      variant="h4"
                       sx={{
                         color: "white",
-                        fontWeight: "700",
                         fontSize: "0.8rem",
+                        fontWeight: 400,
+                        fontFamily: "Poetsen One",
                       }}
                     >
                       {(item.items && cards.length > 0 && `${cards.length} `) ||

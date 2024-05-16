@@ -37,7 +37,14 @@ function ResCategory({ data }) {
           justifyContent: "space-between",
         }}
       >
-        <Typography variant="body1" fontWeight={700} fontSize={18}>
+        <Typography
+          variant="body1"
+          fontWeight={500}
+          fontSize={18}
+          sx={{
+            fontFamily: "Poetsen One",
+          }}
+        >
           {data?.title} ({data?.itemCards?.length})
         </Typography>
         <KeyboardArrowDownIcon

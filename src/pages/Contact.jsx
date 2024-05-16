@@ -27,7 +27,11 @@ const ContactPage = () => {
   return (
     <Container maxWidth="md">
       <Paper style={paperStyle}>
-        <Typography variant="h4" gutterBottom>
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{ fontFamily: "Poetsen One" }}
+        >
           Contact Us
         </Typography>
         <form onSubmit={handleSubmit}>
@@ -38,6 +42,7 @@ const ContactPage = () => {
             label="Your Name"
             variant="outlined"
             required
+            sx={{ fontFamily: "Poetsen One" }}
           />
           <TextField
             fullWidth
@@ -47,6 +52,7 @@ const ContactPage = () => {
             type="email"
             variant="outlined"
             required
+            sx={{ fontFamily: "Poetsen One" }}
           />
           <TextField
             fullWidth
@@ -57,12 +63,13 @@ const ContactPage = () => {
             rows={4}
             variant="outlined"
             required
+            sx={{ fontFamily: "Poetsen One" }}
           />
           <Button
             type="submit"
             variant="contained"
             color="primary"
-            style={{ marginTop: "1rem" }}
+            style={{ marginTop: "1rem", sfontFamily: "Poetsen One" }}
           >
             Send Message
           </Button>
@@ -78,13 +85,20 @@ const ContactPage = () => {
             <EmailOutlinedIcon color="primary" sx={{ fontSize: 32 }} />
           </Grid>
           <Grid item>
-            <Typography variant="body1">shrmdhruv11@gmail.com</Typography>
+            <Typography variant="body1" sx={{ fontFamily: "Poetsen One" }}>
+              shrmdhruv11@gmail.com
+            </Typography>
           </Grid>
           <Grid item>
-            <LinkedInIcon color="primary" sx={{ fontSize: 32 }} />
+            <LinkedInIcon
+              color="primary"
+              sx={{ fontSize: 32, fontFamily: "Poetsen One" }}
+            />
           </Grid>
           <Grid item>
-            <Typography variant="body1">dhrv-shrm</Typography>
+            <Typography variant="body1" sx={{ fontFamily: "Poetsen One" }}>
+              dhrv-shrm
+            </Typography>
           </Grid>
         </Grid>
       </Paper>
