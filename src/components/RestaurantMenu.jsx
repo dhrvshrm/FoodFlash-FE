@@ -11,7 +11,8 @@ function RestaurantMenu() {
   const { menuData, loading, error } = useRestaurantMenu(id);
 
   if (loading) return <Shimmer count={12} />;
-  if (error) return <Typography>{error}</Typography>;
+  if (error)
+    return <Typography sx={{ fontFamily: "Poetsen One" }}>{error}</Typography>;
 
   const { cuisines, name, costForTwoMessage, avgRating, sla } =
     menuData.cards[2].card.card.info;
@@ -30,27 +31,61 @@ function RestaurantMenu() {
   );
 
   if (!menuData || !menuData.cards || !menuData.cards[2]?.card?.card?.info) {
-    return <Typography>No menu data available</Typography>;
+    return (
+      <Typography
+        sx={{
+          padding: "1rem",
+          margin: "1rem",
+          border: "1px solid #000",
+          borderRadius: "0.5rem",
+          fontFamily: "Poetsen One",
+        }}
+      >
+        No menu data available
+      </Typography>
+    );
   }
 
   if (!itemCards || itemCards.length === 0) {
-    return <Typography>No items available in the menu</Typography>;
+    return (
+      <Typography
+        sx={{
+          padding: "1rem",
+          marginTop: "10rem",
+          textAlign: "center",
+          fontWeight: 500,
+          fontSize: "1.5rem",
+          fontFamily: "Poetsen One",
+        }}
+      >
+        No items available in the menu
+      </Typography>
+    );
   }
 
   return (
     <Stack sx={{ padding: "1rem", my: 3 }} gap={1}>
       <Stack>
         <Stack gap={1} alignItems="center" direction="column">
-          <Typography variant="h3" fontWeight={700}>
+          <Typography
+            variant="h3"
+            fontWeight={500}
+            sx={{ fontFamily: "Poetsen One" }}
+          >
             {name}
           </Typography>
-          <Typography> 🍽️ {cuisines?.join(", ")}</Typography>
-          <Typography sx={{ fontWeight: 500 }}>
+          <Typography sx={{ fontFamily: "Poetsen One" }}>
+            {" "}
+            🍽️ {cuisines?.join(", ")}
+          </Typography>
+          <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
             {" "}
             🧑‍🤝‍🧑 {costForTwoMessage}
           </Typography>
-          <Typography sx={{ fontWeight: 500 }}>⭐ {avgRating}</Typography>
-          <Typography sx={{ fontWeight: 500 }}>
+          <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
+            ⭐ {avgRating}
+          </Typography>
+          <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
             🛵 {sla?.deliveryTime} mins
           </Typography>
           <Typography
@@ -58,6 +93,7 @@ function RestaurantMenu() {
               fontWeight: 600,
               fontSize: "1.25rem",
               textDecoration: "underline",
+              fontFamily: "Poetsen One",
             }}
           >
             Menu

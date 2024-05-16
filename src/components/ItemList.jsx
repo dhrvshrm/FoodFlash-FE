@@ -86,7 +86,13 @@ function ItemList({ itemCards, isOpen }) {
                 onClick={() => handleAddToCart(item.card.info)}
               >
                 <Stack direction="row" sx={{ alignItems: "center" }} gap={0.5}>
-                  <Typography variant="body1" fontWeight={600}>
+                  <Typography
+                    variant="body1"
+                    fontWeight={600}
+                    sx={{
+                      fontFamily: "Poetsen One",
+                    }}
+                  >
                     Add
                   </Typography>
                   <AddCircleOutlineIcon />
@@ -100,7 +106,13 @@ function ItemList({ itemCards, isOpen }) {
                 gap: 1,
               }}
             >
-              <Typography variant="body1" fontWeight={600}>
+              <Typography
+                variant="body1"
+                fontWeight={600}
+                sx={{
+                  fontFamily: "Poetsen One",
+                }}
+              >
                 {item?.card?.info?.name} @{" "}
                 {item.card.info.defaultPrice / 100 ||
                   item.card.info.price / 100}{" "}
@@ -108,7 +120,7 @@ function ItemList({ itemCards, isOpen }) {
               </Typography>
               <Typography
                 variant="body2"
-                sx={{ color: "black" }}
+                sx={{ color: "black", fontFamily: "Poetsen One" }}
                 fontWeight={500}
               >
                 {item?.card?.info?.description} -{" "}

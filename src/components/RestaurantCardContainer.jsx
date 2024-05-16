@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { RestaurantCard } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import FilterBtn from "./FilterBtn";
-import { Button, Input } from "@mui/material";
+import { Button, Input, Stack } from "@mui/material";
 import UserOffline from "./UserOffline";
 
 export const RestaurantCardContainer = () => {
@@ -72,13 +72,17 @@ export const RestaurantCardContainer = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
+      <Stack
+        direction="row"
+        gap={3}
+        sx={{
           alignItems: "center",
           justifyContent: "space-between",
           borderRadius: "1rem",
           backgroundColor: " #c0d6e4",
+          margin: "1rem",
+          padding: "1rem 2rem",
+          fontFamily: "Poetsen One",
         }}
       >
         <FilterBtn handleFilterClick={handleFilterClick} />
@@ -96,7 +100,9 @@ export const RestaurantCardContainer = () => {
             "&:hover": {
               backgroundColor: " #c0d6e4",
             },
-            fontWeight: 600,
+
+            fontWeight: 400,
+            fontFamily: "Poetsen One",
           }}
         >
           Reset
@@ -109,10 +115,9 @@ export const RestaurantCardContainer = () => {
           onChange={(e) => setSearchText(e.target.value)}
           sx={{
             height: "2rem",
-            margin: "1rem 2rem",
             width: "20rem",
             paddingLeft: "0.5rem",
-            fontFamily: "Raleway, sans-serif",
+            fontFamily: "Poetsen One",
             backgroundColor: "white",
           }}
         />
@@ -120,7 +125,6 @@ export const RestaurantCardContainer = () => {
           onClick={handleSearch}
           sx={{
             height: "2rem",
-            margin: "1rem 2rem",
             width: "5rem",
             borderRadius: "1rem",
             backgroundColor: "lightGray",
@@ -131,12 +135,14 @@ export const RestaurantCardContainer = () => {
             "&:hover": {
               backgroundColor: " #c0d6e4",
             },
-            fontWeight: 600,
+
+            fontWeight: 400,
+            fontFamily: "Poetsen One",
           }}
         >
           Search
         </Button>
-      </div>
+      </Stack>
       {!isOnline ? (
         <UserOffline />
       ) : (
