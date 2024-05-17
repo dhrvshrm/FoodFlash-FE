@@ -66,7 +66,7 @@ function RestaurantMenu() {
   return (
     <Stack sx={{ padding: "1rem", my: 3 }} gap={1}>
       <Stack>
-        <Stack gap={1} alignItems="center" direction="column">
+        <Stack gap={1} alignItems="center" direction="column" s>
           <Typography
             variant="h3"
             fontWeight={500}
@@ -74,20 +74,38 @@ function RestaurantMenu() {
           >
             {name}
           </Typography>
-          <Typography sx={{ fontFamily: "Poetsen One" }}>
-            {" "}
-            🍽️ {cuisines?.join(", ")}
-          </Typography>
-          <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
-            {" "}
-            🧑‍🤝‍🧑 {costForTwoMessage}
-          </Typography>
-          <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
-            ⭐ {avgRating}
-          </Typography>
-          <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
-            🛵 {sla?.deliveryTime} mins
-          </Typography>
+          <Stack
+            gap={4}
+            alignItems="center"
+            direction="row"
+            justifyContent="center"
+            width="100%"
+          >
+            <Typography sx={{ fontFamily: "Poetsen One" }}>
+              {" "}
+              🍽️ {cuisines?.join(", ")}
+            </Typography>
+            <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
+              {" "}
+              🧑‍🤝‍🧑 {costForTwoMessage}
+            </Typography>
+          </Stack>
+
+          <Stack
+            gap={20}
+            width="100%"
+            alignItems="center"
+            direction="row"
+            justifyContent="center"
+          >
+            <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
+              ⭐ {avgRating}
+            </Typography>
+            <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
+              🛵 {sla?.deliveryTime} mins
+            </Typography>
+          </Stack>
+
           <Typography
             sx={{
               fontWeight: 600,
