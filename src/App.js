@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import "./App.css";
-import { Header } from "./components/Header";
 import appStore from "./store/appStore";
 import UserContext from "./store/context/userContext";
 import { Provider } from "react-redux";
+
+import DefaultLayout from "./layouts/DefaultLayout";
+import LoginLayout from "./layouts/LoginLayout";
 
 function App() {
   const [userData, setUserData] = useState({
     user: "",
   });
 
-  // useEffect to set user data in the context
   useEffect(() => {
     const data = {
       user: "Lalit",
@@ -19,15 +20,23 @@ function App() {
     setUserData(data);
   }, []);
 
-  const renderHeader = window.location.pathname !== "/";
+  const location = useLocation();
+  console.log(location);
+
+  const isLoginPage = location.pathname === "/";
 
   return (
     <Provider store={appStore}>
       <UserContext.Provider value={userData}>
-        <div>
-          {renderHeader && <Header />} {/* Conditionally render Header */}
-          <Outlet />
-        </div>
+        {isLoginPage ? (
+          <LoginLayout>
+            <Outlet />
+          </LoginLayout>
+        ) : (
+          <DefaultLayout>
+            <Outlet />
+          </DefaultLayout>
+        )}
       </UserContext.Provider>
     </Provider>
   );
