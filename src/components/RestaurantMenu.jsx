@@ -63,59 +63,71 @@ function RestaurantMenu() {
     );
   }
 
+  const restaurantInfo = [
+    {
+      title: "Cuisines",
+      value: cuisines?.join(", ") || "N/A",
+      emoji: "🍽️",
+    },
+    {
+      title: "Cost for two",
+      value: costForTwoMessage || "N/A",
+      emoji: "🧑‍🤝‍🧑",
+    },
+    {
+      title: "Rating",
+      value: avgRating || "N/A",
+      emoji: "⭐",
+    },
+    {
+      title: "Delivery time",
+      value: sla?.deliveryTime || "30" + " mins",
+      emoji: "🛵",
+    },
+  ];
+
   return (
-    <Stack sx={{ padding: "1rem", my: 3 }} gap={1}>
-      <Stack>
-        <Stack gap={1} alignItems="center" direction="column" s>
-          <Typography
-            variant="h3"
-            fontWeight={500}
-            sx={{ fontFamily: "Poetsen One" }}
-          >
-            {name}
-          </Typography>
-          <Stack
-            gap={4}
-            alignItems="center"
-            direction="row"
-            justifyContent="center"
-            width="100%"
-          >
-            <Typography sx={{ fontFamily: "Poetsen One" }}>
-              {" "}
-              🍽️ {cuisines?.join(", ")}
-            </Typography>
-            <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
-              {" "}
-              🧑‍🤝‍🧑 {costForTwoMessage}
-            </Typography>
-          </Stack>
-
-          <Stack
-            gap={20}
-            width="100%"
-            alignItems="center"
-            direction="row"
-            justifyContent="center"
-          >
-            <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
-              ⭐ {avgRating}
-            </Typography>
-            <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
-              🛵 {sla?.deliveryTime} mins
-            </Typography>
-          </Stack>
-
-          <Typography
-            sx={{
-              fontWeight: 600,
-              fontSize: "1.25rem",
-              textDecoration: "underline",
-              fontFamily: "Poetsen One",
-            }}
-          >
-            Menu
-          </Typography>
+    <Stack
+      sx={{ padding: "1rem", my: 3 }}
+      justifyContent="center"
+      alignItems="center"
+      width="100%"
+    >
+      <Stack gap={3} alignItems="left" direction="column" width="60%" p={2}>
+        <Typography
+          variant="body1"
+          fontWeight={500}
+          sx={{
+            fontFamily: "Poetsen One",
+            fontSize: "1.5rem",
+            ml: 5,
+          }}
+        >
+          {name}
+        </Typography>
+        <Stack
+          direction="row"
+          alignItems="left"
+          justifyContent="space-between"
+          width="100%"
+          sx={{
+            borderRadius: "1rem",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          <ul>
+            {restaurantInfo.map((item, index) => (
+              <Stack key={index}>
+                <Typography
+                  sx={{ fontFamily: "Poetsen One" }}
+                  fontWeight={300}
+                  mb={1}
+                >
+                  {item.emoji} {item.value}
+                </Typography>
+              </Stack>
+            ))}
+          </ul>
         </Stack>
       </Stack>
       {filteredCategoryCards.map((category) => (

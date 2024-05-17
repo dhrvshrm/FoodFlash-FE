@@ -23,7 +23,7 @@ function Cart() {
         sx={{ px: 8, mt: 2, justifyContent: "space-between" }}
       >
         <Typography variant="h6" sx={styles.cartItemText}>
-          {cards.length ? "Items" : "Please add items to your cart "}
+          {cards.length ? "Items" : "Please add items to your cart."}
         </Typography>
         <Typography
           variant="h6"

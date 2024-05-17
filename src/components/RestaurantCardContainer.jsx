@@ -137,7 +137,6 @@ export const RestaurantCardContainer = () => {
             },
 
             fontWeight: 400,
-            fontFamily: "Poetsen One",
           }}
         >
           Search
@@ -146,13 +145,12 @@ export const RestaurantCardContainer = () => {
       {!isOnline ? (
         <UserOffline />
       ) : (
-        <div
-          style={{
+        <Stack
+          direction="row"
+          sx={{
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
-            gap: "2rem",
-            padding: "2rem",
           }}
         >
           {isLoading ? (
@@ -177,7 +175,7 @@ export const RestaurantCardContainer = () => {
               ))}
             </>
           )}
-        </div>
+        </Stack>
       )}
     </>
   );
