@@ -1,14 +1,15 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    window.location.href = "/home";
-    // navigate("/home");
+    navigate("/home");
   };
 
   const handleLoginAsGuest = () => {

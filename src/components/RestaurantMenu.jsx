@@ -2,6 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useRestaurantMenu } from "../hooks/useRestaurantMenu";
+import NoDataMessage from "./NoDataMsg";
 import ResCategory from "./REstaurantCategory";
 import Shimmer from "./Shimmer";
 
@@ -14,8 +15,18 @@ function RestaurantMenu() {
   if (error)
     return <Typography sx={{ fontFamily: "Poetsen One" }}>{error}</Typography>;
 
-  const { cuisines, name, costForTwoMessage, avgRating, sla } =
-    menuData.cards[2].card.card.info;
+  const {
+    cuisines,
+    name,
+    costForTwoMessage,
+    avgRating,
+    sla,
+    labels,
+    areaName,
+    totalRatingsString,
+    feeDetails,
+  } = menuData.cards[2].card.card.info;
+  console.log({ feeDetails });
 
   const { itemCards } =
     menuData.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
@@ -31,73 +42,116 @@ function RestaurantMenu() {
   );
 
   if (!menuData || !menuData.cards || !menuData.cards[2]?.card?.card?.info) {
-    return (
-      <Typography
-        sx={{
-          padding: "1rem",
-          margin: "1rem",
-          border: "1px solid #000",
-          borderRadius: "0.5rem",
-          fontFamily: "Poetsen One",
-        }}
-      >
-        No menu data available
-      </Typography>
-    );
+    return <NoDataMessage type="noMenuData" />;
   }
 
   if (!itemCards || itemCards.length === 0) {
-    return (
-      <Typography
-        sx={{
-          padding: "1rem",
-          marginTop: "10rem",
-          textAlign: "center",
-          fontWeight: 500,
-          fontSize: "1.5rem",
-          fontFamily: "Poetsen One",
-        }}
-      >
-        No items available in the menu
-      </Typography>
-    );
+    return <NoDataMessage type="noItems" />;
   }
 
+  console.log({ menuCard: menuData.cards[2].card.card.info });
+
+  const restaurantInfo = [
+    {
+      title: "Cuisines",
+      value: cuisines?.join(", ") || "N/A",
+      emoji: "🍽️",
+    },
+    {
+      title: "Cost for two",
+      value: costForTwoMessage || "N/A",
+      emoji: "🧑‍🤝‍🧑",
+    },
+    {
+      title: "Rating",
+      value: `${avgRating} (${totalRatingsString})` || "N/A",
+      emoji: "⭐",
+    },
+    {
+      title: "Delivery time",
+      // eslint-disable-next-line no-useless-concat
+      value:
+        sla?.minDeliveryTime + "-" + sla?.maxDeliveryTime + " mins" || "N/A",
+      emoji: "🛵",
+    },
+  ];
+
   return (
-    <Stack sx={{ padding: "1rem", my: 3 }} gap={1}>
-      <Stack>
-        <Stack gap={1} alignItems="center" direction="column">
+    <Stack
+      sx={{ padding: "1rem", my: 3 }}
+      justifyContent="center"
+      alignItems="center"
+      width="100%"
+    >
+      <Stack
+        gap={3}
+        alignItems="left"
+        direction="column"
+        width="60%"
+        p={2}
+        ml={5}
+      >
+        <Stack direction="column">
           <Typography
-            variant="h3"
+            variant="body1"
             fontWeight={500}
-            sx={{ fontFamily: "Poetsen One" }}
+            sx={{
+              fontFamily: "Poetsen One",
+              fontSize: "1.5rem",
+            }}
           >
             {name}
           </Typography>
-          <Typography sx={{ fontFamily: "Poetsen One" }}>
-            {" "}
-            🍽️ {cuisines?.join(", ")}
-          </Typography>
-          <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
-            {" "}
-            🧑‍🤝‍🧑 {costForTwoMessage}
-          </Typography>
-          <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
-            ⭐ {avgRating}
-          </Typography>
-          <Typography sx={{ fontWeight: 400, fontFamily: "Poetsen One" }}>
-            🛵 {sla?.deliveryTime} mins
-          </Typography>
           <Typography
+            variant="body1"
+            fontWeight={100}
             sx={{
-              fontWeight: 600,
-              fontSize: "1.25rem",
-              textDecoration: "underline",
               fontFamily: "Poetsen One",
+              fontSize: "1rem",
             }}
           >
-            Menu
+            📍 {labels[1].message.replaceAll(",", ", ")}
           </Typography>
+        </Stack>
+        <Stack
+          direction="row"
+          alignItems="left"
+          justifyContent="space-between"
+          width="100%"
+          sx={{
+            borderRadius: "1rem",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          <ul>
+            {restaurantInfo.map((item, index) => (
+              <Stack key={index}>
+                <Typography
+                  sx={{ fontFamily: "Poetsen One" }}
+                  fontWeight={300}
+                  mb={1}
+                >
+                  {item.emoji} {item.value}
+                </Typography>
+              </Stack>
+            ))}
+          </ul>
+          <Stack sx={{ m: 3 }}>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ fontFamily: "Poetsen One" }}
+            >
+              Very far {sla.lastMileTravelString} from {areaName}
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ fontFamily: "Poetsen One" }}
+            >
+              Extra charges will be applied upto {feeDetails?.totalFee / 100} ₹
+            </Typography>
+          </Stack>
         </Stack>
       </Stack>
       {filteredCategoryCards.map((category) => (

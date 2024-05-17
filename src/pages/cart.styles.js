@@ -1,0 +1,91 @@
+export const styles = {
+  itemContainer: {
+    margin: "1rem auto",
+    borderRadius: 5,
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    transition: "transform 0.3s ease-in-out",
+    "&:hover": {
+      transform: "scale(1.02)",
+    },
+    border: "1px solid lightgray",
+    width: "80%",
+    height: "11rem",
+    px: "2rem",
+    pt: "1.6rem",
+  },
+  itemImage: {
+    objectFit: "fill",
+    height: "9.5rem",
+    borderRadius: "0.5rem",
+    width: "12rem",
+    fontFamily: "Poetsen One",
+  },
+  itemName: {
+    fontSize: "1.2rem",
+    fontWeight: 500,
+    fontFamily: "Poetsen One",
+  },
+  itemPrice: {
+    fontFamily: "Poetsen One",
+  },
+  itemDescription: {
+    fontSize: "1rem",
+    fontWeight: 400,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    display: "-webkit-box",
+    WebkitLineClamp: 3,
+    WebkitBoxOrient: "vertical",
+    fontFamily: "Poetsen One",
+  },
+  vegIndicator: {
+    height: ".75rem",
+    width: ".75rem",
+    borderRadius: "50%",
+    fontFamily: "Poetsen One",
+  },
+  vegText: {
+    fontSize: "1rem",
+    fontWeight: 600,
+    fontFamily: "Poetsen One",
+  },
+  cartContainer: {
+    maxWidth: "60rem",
+    margin: "20px auto",
+    padding: "20px 20px",
+    borderRadius: 2,
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    border: "1px solid lightgray",
+    mt: "4rem",
+  },
+  cartTitle: {
+    textAlign: "left",
+    ml: 8,
+    fontWeight: 500,
+    fontFamily: "Poetsen One",
+  },
+  cartItemText: {
+    fontFamily: "Poetsen One",
+    mb: 3,
+  },
+  clearCartLink: {
+    cursor: "pointer",
+    color: "blue",
+    "&:hover": {
+      textDecoration: "underline",
+    },
+    fontFamily: "Poetsen One",
+  },
+  paymentButton: {
+    margin: "20px auto",
+    display: "block",
+    textTransform: "none",
+    padding: "10px 20px",
+    fontSize: "1rem",
+    fontFamily: "Poetsen One",
+    "&:hover": {
+      borderRadius: "2rem",
+    },
+    width: "fit-content",
+  },
+};

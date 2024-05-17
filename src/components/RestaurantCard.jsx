@@ -17,6 +17,7 @@ export const RestaurantCard = (props) => {
         flexDirection: "column",
         padding: "1.5rem 1.5rem 1rem 1.5rem",
         transition: "transform 0.3s ease-in-out",
+        mb: "1rem",
         "&:hover": {
           transform: "scale(1.02)",
         },
