@@ -58,7 +58,7 @@ export const RestaurantCardContainer = () => {
   const fetchData = async () => {
     setIsLoading(true);
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0760&lng=72.8777"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.9124&lng=75.7873"
     );
     const json = await data.json();
 
