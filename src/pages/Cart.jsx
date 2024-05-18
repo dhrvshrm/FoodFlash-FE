@@ -1,13 +1,16 @@
-import React from "react";
 import { Box, Button, Stack, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
-import { styles } from "./cart.styles";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../components/CartItem";
+import { clearItems } from "../store/slices/cardSlice";
+import { styles } from "./cart.styles";
 
-function Cart() {
+const Cart = () => {
+  const dispatch = useDispatch();
   const { cards } = useSelector((state) => state.card);
 
   const handleClearCart = () => {
+    dispatch(clearItems());
     localStorage.removeItem("cart");
     window.location.reload();
   };
@@ -56,6 +59,6 @@ function Cart() {
       )}
     </Box>
   );
-}
+};
 
 export default Cart;
