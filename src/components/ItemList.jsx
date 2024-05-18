@@ -1,11 +1,14 @@
 import { Box, Stack, Typography } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../store/slices/cardSlice";
 
 function ItemList({ itemCards, isOpen }) {
   const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
   const dispatch = useDispatch();
+  const { cards } = useSelector((state) => state.card);
+  const showGreenAddButton = cards.length > 0;
+  console.log(cards);
 
   const handleAddToCart = (item) => {
     dispatch(addItem(item));
@@ -73,7 +76,6 @@ function ItemList({ itemCards, isOpen }) {
                   position: "absolute",
                   bottom: "5px",
                   right: "5px",
-                  backgroundColor: "white",
                   boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
                   width: "fit-content",
                   height: "2rem",
@@ -82,20 +84,28 @@ function ItemList({ itemCards, isOpen }) {
                   alignItems: "center",
                   justifyContent: "center",
                   paddingX: "0.5rem",
+                  border: "solid green 1px",
+                  backgroundColor: showGreenAddButton ? "green" : "white",
                 }}
                 onClick={() => handleAddToCart(item.card.info)}
               >
                 <Stack direction="row" sx={{ alignItems: "center" }} gap={0.5}>
                   <Typography
                     variant="body1"
-                    fontWeight={600}
+                    fontWeight={400}
                     sx={{
                       fontFamily: "Poetsen One",
+                      color: showGreenAddButton ? "white" : "green",
                     }}
                   >
                     Add
                   </Typography>
-                  <AddCircleOutlineIcon />
+                  <AddCircleOutlineIcon
+                    sx={{
+                      color: showGreenAddButton ? "white" : "green",
+                      fontSize: "1rem",
+                    }}
+                  />
                 </Stack>
               </Box>
             </Box>
