@@ -5,6 +5,8 @@ import React from "react";
 export const RestaurantCard = (props) => {
   const navigate = useNavigate();
   const propsArr = Object.values(props);
+  const discountObj = props?.aggregatedDiscountInfoV3;
+  const { header, subHeader } = discountObj || { header: "", subHeader: "" };
 
   function onCardClick() {
     navigate(`/restaurants/${props.id}`);
@@ -58,13 +60,13 @@ export const RestaurantCard = (props) => {
               fontWeight: 400,
               bottom: 2,
               left: 2,
-              mt: "4rem",
+              mt: "4.5rem",
               ml: "1rem",
               fontFamily: "Poetsen One",
               fontSize: "1.3rem",
             }}
           >
-            {propsArr[0]}
+            {header} {subHeader}
           </Typography>
         </Box>
       </div>
