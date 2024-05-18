@@ -1,9 +1,11 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 export const RestaurantCard = (props) => {
   const navigate = useNavigate();
   const propsArr = Object.values(props);
+
   function onCardClick() {
     navigate(`/restaurants/${props.id}`);
   }
@@ -24,17 +26,48 @@ export const RestaurantCard = (props) => {
       }}
       onClick={onCardClick}
     >
-      <img
-        src={props.imgUrl}
-        style={{
-          objectFit: "cover",
-          height: "12rem",
-          width: "17rem",
-          borderRadius: "1rem",
-          alignSelf: "center",
-        }}
-        alt="Restaurant"
-      />
+      <div style={{ position: "relative", height: "12rem", width: "17rem" }}>
+        <img
+          src={props.imgUrl}
+          style={{
+            objectFit: "cover",
+
+            borderRadius: "1rem",
+            alignSelf: "center",
+            width: "100%",
+            height: "100%",
+          }}
+          alt="Restaurant"
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            height: "8rem",
+            background:
+              "linear-gradient(to bottom, transparent, rgba(0, 0, 0, 2))",
+            borderRadius: "0 0 1rem 1rem",
+          }}
+        >
+          <Typography
+            sx={{
+              color: "white",
+              padding: "0.5rem",
+              fontWeight: 400,
+              bottom: 2,
+              left: 2,
+              mt: "4rem",
+              ml: "1rem",
+              fontFamily: "Poetsen One",
+              fontSize: "1.3rem",
+            }}
+          >
+            {propsArr[0]}
+          </Typography>
+        </Box>
+      </div>
       <Box
         sx={{
           marginTop: "0.5rem",
