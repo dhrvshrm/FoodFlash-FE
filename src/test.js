@@ -1,64 +1,67 @@
 const test = {
-  id: "47595",
-  name: "Pizza Hut",
-  city: "Jaipur",
+  id: "669228",
+  name: "Royal Bakers",
+  city: "Ajmer",
   slugs: {
-    restaurant: "pizza-hut-c-scheme-c-scheme",
-    city: "jaipur",
+    restaurant: "royal-bakers-north-ajmer-north-ajmer-3",
+    city: "ajmer",
   },
   uniqueId: "e51e6528-4859-48c8-8fed-e84c17dc2d76",
-  cloudinaryImageId: "2b4f62d606d1b2bfba9ba9e5386fabb7",
-  locality: "C Scheme",
-  areaName: "MI Road",
-  costForTwo: "35000",
-  costForTwoMessage: "₹350 for two",
-  cuisines: ["Pizzas"],
-  avgRating: 4.1,
+  cloudinaryImageId: "7884861e69959c4ad9983eeb70726246",
+  locality: "Shiv Nagar",
+  areaName: "Bihari Ganj",
+  costForTwo: "30000",
+  costForTwoMessage: "₹300 for two",
+  cuisines: ["Bakery", "Fast Food"],
+  avgRating: 4.3,
+  veg: true,
   feeDetails: {
-    restaurantId: "47595",
+    restaurantId: "669228",
     fees: [
       {
         name: "TYPE_DISTANCE",
-        fee: 8500,
+        fee: 1600,
       },
       {
         name: "TYPE_TIME",
       },
     ],
-    totalFee: 8500,
+    totalFee: 1600,
     title: "Delivery Charge",
-    amount: "8500",
-    icon: "v1648208530/surgecreatives/info",
-    message: "<b>Very Far (11.2 kms)</b> | Additional delivery fee will apply",
+    amount: "1600",
+    icon: "v1648635511/Delivery_fee_new_cjxumu",
+    message: "Order above 149 for discounted delivery fee",
   },
-  parentId: "721",
-  avgRatingString: "4.1",
-  totalRatingsString: "5K+ ratings",
+  parentId: "6831",
+  avgRatingString: "4.3",
+  totalRatingsString: "5 ratings",
   sla: {
-    restaurantId: "47595",
-    deliveryTime: 47,
-    minDeliveryTime: 45,
-    maxDeliveryTime: 50,
-    lastMileTravel: 11.2,
+    restaurantId: "669228",
+    deliveryTime: 24,
+    minDeliveryTime: 20,
+    maxDeliveryTime: 25,
+    lastMileTravel: 1.6,
     serviceability: "SERVICEABLE",
     stressFactor: 1,
     rainMode: "RAIN_MODE_NONE",
-    longDistance: "LONG_DISTANCE_IT_IS_LONG_DISTANCE",
-    zoneId: 391,
-    slaString: "45-50 MINS",
-    lastMileTravelString: "11.1 km",
+    longDistance: "LONG_DISTANCE_NOT_LONG_DISTANCE",
+    zoneId: 1096,
+    slaString: "20-25 MINS",
+    lastMileTravelString: "1.6 km",
     iconType: "ICON_TYPE_EMPTY",
   },
   availability: {
-    nextCloseTime: "2024-05-18 04:00:00",
+    nextCloseTime: "2024-05-18 21:30:00",
     visibility: true,
     opened: true,
     restaurantClosedMeta: {},
   },
   aggregatedDiscountInfo: {
+    header: "Flat ₹150 off",
     shortDescriptionList: [
       {
-        discountType: "Percentage",
+        meta: "Flat ₹150 off  | Use code MDM150",
+        discountType: "Flat",
         operationType: "RESTAURANT",
       },
       {
@@ -68,12 +71,12 @@ const test = {
     ],
     descriptionList: [
       {
-        meta: "20% off upto ₹125 | Use KOTAK811 Above ₹499",
-        discountType: "Percentage",
+        meta: "Flat ₹150 off  | Use code MDM150",
+        discountType: "Flat",
         operationType: "RESTAURANT",
       },
       {
-        meta: "15% off upto ₹150 |  Use HSBCFEST Above ₹499",
+        meta: "20% off upto ₹125 | Use AMEXMATCHDAY Above ₹549",
         discountType: "Percentage",
         operationType: "RESTAURANT",
       },
@@ -81,7 +84,7 @@ const test = {
     visible: true,
   },
   badges: {},
-  slugString: "pizza-hut-c-scheme-c-scheme",
+  slugString: "royal-bakers-north-ajmer-north-ajmer-3",
   multiOutlet: true,
   isOpen: true,
   labels: [
@@ -91,19 +94,20 @@ const test = {
     },
     {
       title: "Address",
-      message: "109, Ganpati Plaza, MI Road, Jaipur",
+      message: "Saat Pipli Balaji Mandir Shiv Nagar Bihari Ganj Ajmer Ward 23",
     },
     {
       title: "Cuisines",
-      message: "Pizzas",
+      message: "Bakery,Fast Food",
     },
   ],
-  logo: "rng/md/carousel/production/cztbor82z4wcxssgnaje",
-  totalRatings: 5000,
+  totalRatings: 5,
   aggregatedDiscountInfoV2: {
+    header: "Flat ₹150 off",
     shortDescriptionList: [
       {
-        discountType: "Percentage",
+        meta: "Flat ₹150 off  | Use code MDM150",
+        discountType: "Flat",
         operationType: "RESTAURANT",
       },
       {
@@ -113,12 +117,12 @@ const test = {
     ],
     descriptionList: [
       {
-        meta: "20% off upto ₹125 | Use KOTAK811 Above ₹499",
-        discountType: "Percentage",
+        meta: "Flat ₹150 off  | Use code MDM150",
+        discountType: "Flat",
         operationType: "RESTAURANT",
       },
       {
-        meta: "15% off upto ₹150 |  Use HSBCFEST Above ₹499",
+        meta: "20% off upto ₹125 | Use AMEXMATCHDAY Above ₹549",
         discountType: "Percentage",
         operationType: "RESTAURANT",
       },
@@ -126,47 +130,39 @@ const test = {
     couponDetailsCta: "View coupon details",
   },
   type: "F",
+  nudgeBanners: [
+    {
+      minValue: 209,
+      maxValue: 299,
+      priority: 1,
+      couponCode: "MDM150",
+      discountInfo: {
+        discountType: "Flat",
+        value: 150,
+      },
+      lockedMessage: "Add items worth ₹<amount> to save ₹150 | Code MDM150",
+      unlockedMessage: "MDM150 Coupon Unlocked! Use it to save ₹150",
+      logoCtx: {},
+    },
+  ],
   headerBanner: {
-    url: "swiggy://webview?is_external=false&webview_url=https://www.swiggy.com/restaurant-info/47595",
+    url: "swiggy://webview?is_external=false&webview_url=https://www.swiggy.com/restaurant-info/669228",
   },
   expectationNotifiers: [
     {
-      text: "<b>Very Far (11.2 kms)</b> | Additional delivery fee will apply",
+      text: "Order above 149 for discounted delivery fee",
       icon: {
-        imageId: "equitable_serviceability/es-icons/es-location-icon.png",
-        clickable: true,
+        imageId: "v1648635511/Delivery_fee_new_cjxumu",
       },
       popup: {
-        popupType: "HALF_CARD",
         cta: {},
       },
-      type: "DISTANCE_FEE_FOOD_LM",
-      enrichedText:
-        "<b>Very Far (11.2 kms)</b> | Additional delivery fee will apply",
+      type: "DISTANCE_FEE_NON_FOOD_LM",
+      enrichedText: "Order above 149 for discounted delivery fee",
       halfCardPopup: {
-        halfCardPopupHeader: {
-          message: "Ordering from your far away favourite!",
-          imageId: "equitable_serviceability/es-icons/es-half-card-icon.png",
-        },
-        halfCardPopupDescription: [
-          {
-            message:
-              "Far away orders generally take longer and may impact the food temperature",
-            imageId: "equitable_serviceability/es-icons/es-half-card-food.png",
-          },
-        ],
+        halfCardPopupHeader: {},
       },
       trailingIcon: {},
-    },
-  ],
-  generalPurposeInfoListV2: [
-    {
-      cta: {
-        info: {
-          recordings: {},
-        },
-        linkCta: {},
-      },
     },
   ],
   ratingSlab: "RATING_SLAB_5",
@@ -181,6 +177,6 @@ const test = {
     parameters: {},
     presentation: {},
   },
-  latLong: "26.91952283,75.7997265",
+  latLong: "26.4288183,74.648563299999",
   backgroundImageOverlayInfo: {},
 };
