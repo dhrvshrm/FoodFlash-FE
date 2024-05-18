@@ -1,16 +1,30 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
-import { styles } from "./cart.styles";
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../components/CartItem";
+import { clearItems } from "../store/slices/cardSlice";
+import { styles } from "./cart.styles";
 
-function Cart() {
+const Cart = () => {
+  const dispatch = useDispatch();
   const { cards } = useSelector((state) => state.card);
 
   const handleClearCart = () => {
+    dispatch(clearItems());
     localStorage.removeItem("cart");
     window.location.reload();
   };
+
+  const aggregatedItems = cards.reduce((acc, item) => {
+    if (!acc[item.id]) {
+      acc[item.id] = { ...item, quantity: 1 };
+    } else {
+      acc[item.id].quantity += 1;
+    }
+    return acc;
+  }, {});
+
+  const aggregatedItemsArray = Object.values(aggregatedItems);
 
   return (
     <Box sx={styles.cartContainer}>
@@ -23,24 +37,28 @@ function Cart() {
         sx={{ px: 8, mt: 2, justifyContent: "space-between" }}
       >
         <Typography variant="h6" sx={styles.cartItemText}>
-          {cards.length ? "Items" : "Please add items to your cart."}
+          {aggregatedItemsArray.length
+            ? "Items"
+            : "Please add items to your cart."}
         </Typography>
         <Typography
           variant="h6"
           sx={styles.clearCartLink}
           onClick={handleClearCart}
         >
-          {cards.length === 0 ? "" : "Clear Cart"}
+          {aggregatedItemsArray.length === 0 ? "" : "Clear Cart"}
         </Typography>
       </Stack>
-      {cards && cards.map((item) => <CartItem key={item.id} item={item} />)}
-      {cards.length !== 0 && (
+      {aggregatedItemsArray.map((item) => (
+        <CartItem key={item.id} item={item} />
+      ))}
+      {aggregatedItemsArray.length !== 0 && (
         <Button variant="contained" sx={styles.paymentButton}>
           Proceed to Payment
         </Button>
       )}
     </Box>
   );
-}
+};
 
 export default Cart;

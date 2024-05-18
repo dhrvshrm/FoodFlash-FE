@@ -1,14 +1,21 @@
+import React, { useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../store/slices/cardSlice";
 
 function ItemList({ itemCards, isOpen }) {
   const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
   const dispatch = useDispatch();
+  const [clickedItem, setClickedItem] = useState(null);
+  const [itemQuantity, setItemQuantity] = useState({});
 
   const handleAddToCart = (item) => {
     dispatch(addItem(item));
+  };
+
+  const handleQuantityChange = (itemId, quantity) => {
+    setItemQuantity({ ...itemQuantity, [itemId]: quantity });
   };
 
   return (
@@ -73,7 +80,6 @@ function ItemList({ itemCards, isOpen }) {
                   position: "absolute",
                   bottom: "5px",
                   right: "5px",
-                  backgroundColor: "white",
                   boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
                   width: "fit-content",
                   height: "2rem",
@@ -82,20 +88,38 @@ function ItemList({ itemCards, isOpen }) {
                   alignItems: "center",
                   justifyContent: "center",
                   paddingX: "0.5rem",
+                  border: "solid green 1px",
+                  backgroundColor:
+                    clickedItem === item.card.info.id ? "green" : "white",
                 }}
-                onClick={() => handleAddToCart(item.card.info)}
+                onClick={() => {
+                  handleAddToCart(item.card.info);
+                  setClickedItem(item.card.info.id);
+                  handleQuantityChange(
+                    item.card.info.id,
+                    (itemQuantity[item.card.info.id] || 0) + 1
+                  );
+                }}
               >
                 <Stack direction="row" sx={{ alignItems: "center" }} gap={0.5}>
                   <Typography
                     variant="body1"
-                    fontWeight={600}
+                    fontWeight={400}
                     sx={{
                       fontFamily: "Poetsen One",
+                      color:
+                        clickedItem === item.card.info.id ? "white" : "green",
                     }}
                   >
                     Add
                   </Typography>
-                  <AddCircleOutlineIcon />
+                  <AddCircleOutlineIcon
+                    sx={{
+                      color:
+                        clickedItem === item.card.info.id ? "white" : "green",
+                      fontSize: "1rem",
+                    }}
+                  />
                 </Stack>
               </Box>
             </Box>
@@ -124,6 +148,12 @@ function ItemList({ itemCards, isOpen }) {
                 fontWeight={500}
               >
                 {item?.card?.info?.description} -{" "}
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{ color: "black", fontFamily: "Poetsen One" }}
+              >
+                Quantity: {itemQuantity[item.card.info.id] || 0}
               </Typography>
             </Stack>
           </Stack>

@@ -48,7 +48,7 @@ export const RestaurantCardContainer = () => {
   const [searchText, setSearchText] = useState("");
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const { latitude, longitude } = useGeolocation();
-
+  console.log({ listOfRestaurant });
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -154,6 +154,9 @@ export const RestaurantCardContainer = () => {
                   imgUrl={`${imgUrl}/${restaurant.info.cloudinaryImageId}`}
                   isLoading={isLoading}
                   id={restaurant.info.id}
+                  aggregatedDiscountInfoV3={
+                    restaurant.info.aggregatedDiscountInfoV3
+                  }
                 />
               ))}
             </>

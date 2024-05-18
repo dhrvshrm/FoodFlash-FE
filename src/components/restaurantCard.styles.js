@@ -1,0 +1,63 @@
+export const STYLES = {
+  cardContainer: {
+    width: "18rem",
+    cursor: "pointer",
+    display: "flex",
+    flexDirection: "column",
+    padding: "1.5rem 1.5rem 1rem 1.5rem",
+    transition: "transform 0.3s ease-in-out",
+    mb: "1rem",
+    "&:hover": {
+      transform: "scale(1.02)",
+    },
+  },
+  imageContainer: {
+    position: "relative",
+    height: "12rem",
+    width: "17rem",
+  },
+  image: {
+    objectFit: "cover",
+    borderRadius: "1rem",
+    alignSelf: "center",
+    width: "100%",
+    height: "100%",
+  },
+  overlay: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    width: "100%",
+    height: "8rem",
+    background: "linear-gradient(to bottom, transparent, rgba(0, 0, 0, 2))",
+    borderRadius: "0 0 1rem 1rem",
+  },
+  overlayText: {
+    color: "white",
+    padding: "0.5rem",
+    fontWeight: 400,
+    bottom: 2,
+    left: 2,
+    mt: "4.5rem",
+    ml: "1rem",
+    fontFamily: "Poetsen One",
+    fontSize: "1.3rem",
+  },
+  detailsContainer: {
+    marginTop: "0.5rem",
+    marginLeft: "1rem",
+  },
+  restaurantName: {
+    fontWeight: 700,
+    marginBottom: "0.5rem",
+    textOverflow: "ellipsis",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    fontFamily: "Poetsen One",
+    fontSize: "1.2rem",
+  },
+  additionalInfo: {
+    fontWeight: 500,
+    fontFamily: "Poetsen One",
+  },
+};
