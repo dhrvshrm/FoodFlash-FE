@@ -64,9 +64,7 @@ const items = [
 
 export const Header = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const { user } = useContext(UserContext);
   const { cards } = useSelector((state) => state.card);
-  console.log({ cards });
 
   const updateOnlineStatus = () => {
     setIsOnline(navigator.onLine);

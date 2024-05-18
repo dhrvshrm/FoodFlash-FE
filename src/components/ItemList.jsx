@@ -14,7 +14,7 @@ function ItemList({ itemCards, isOpen }) {
   return (
     <Stack
       sx={{
-        transition: "height 0.3s ease-in-out", // Add transition effect to height
+        transition: "height 0.3s ease-in-out",
         height: isOpen ? "fit-content" : 0,
         overflow: "hidden",
         paddingY: "1.6rem",
