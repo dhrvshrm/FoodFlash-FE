@@ -12,6 +12,7 @@ function App() {
   const [userData, setUserData] = useState({
     user: "",
   });
+  const location = useLocation();
 
   useEffect(() => {
     const data = {
@@ -19,9 +20,6 @@ function App() {
     };
     setUserData(data);
   }, []);
-
-  const location = useLocation();
-  console.log(location);
 
   const isLoginPage = location.pathname === "/";
 
