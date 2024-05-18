@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { styles } from "../pages/cart.styles";
 
@@ -48,6 +49,11 @@ export default function CartItem({ item }) {
             {item.isVeg ? "Veg" : "Non-Veg"}
           </Typography>
         </Stack>
+        {item.quantity && (
+          <Typography variant="body2" sx={{ fontFamily: "Poetsen One", my: 1 }}>
+            Quantity: {item.quantity}
+          </Typography>
+        )}
       </Stack>
     </Stack>
   );

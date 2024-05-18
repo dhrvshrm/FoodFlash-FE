@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,12 +7,15 @@ import { addItem } from "../store/slices/cardSlice";
 function ItemList({ itemCards, isOpen }) {
   const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
   const dispatch = useDispatch();
-  const { cards } = useSelector((state) => state.card);
-  const showGreenAddButton = cards.length > 0;
-  console.log(cards);
+  const [clickedItem, setClickedItem] = useState(null);
+  const [itemQuantity, setItemQuantity] = useState({});
 
   const handleAddToCart = (item) => {
     dispatch(addItem(item));
+  };
+
+  const handleQuantityChange = (itemId, quantity) => {
+    setItemQuantity({ ...itemQuantity, [itemId]: quantity });
   };
 
   return (
@@ -85,9 +89,17 @@ function ItemList({ itemCards, isOpen }) {
                   justifyContent: "center",
                   paddingX: "0.5rem",
                   border: "solid green 1px",
-                  backgroundColor: showGreenAddButton ? "green" : "white",
+                  backgroundColor:
+                    clickedItem === item.card.info.id ? "green" : "white",
                 }}
-                onClick={() => handleAddToCart(item.card.info)}
+                onClick={() => {
+                  handleAddToCart(item.card.info);
+                  setClickedItem(item.card.info.id);
+                  handleQuantityChange(
+                    item.card.info.id,
+                    (itemQuantity[item.card.info.id] || 0) + 1
+                  );
+                }}
               >
                 <Stack direction="row" sx={{ alignItems: "center" }} gap={0.5}>
                   <Typography
@@ -95,14 +107,16 @@ function ItemList({ itemCards, isOpen }) {
                     fontWeight={400}
                     sx={{
                       fontFamily: "Poetsen One",
-                      color: showGreenAddButton ? "white" : "green",
+                      color:
+                        clickedItem === item.card.info.id ? "white" : "green",
                     }}
                   >
                     Add
                   </Typography>
                   <AddCircleOutlineIcon
                     sx={{
-                      color: showGreenAddButton ? "white" : "green",
+                      color:
+                        clickedItem === item.card.info.id ? "white" : "green",
                       fontSize: "1rem",
                     }}
                   />
@@ -134,6 +148,12 @@ function ItemList({ itemCards, isOpen }) {
                 fontWeight={500}
               >
                 {item?.card?.info?.description} -{" "}
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{ color: "black", fontFamily: "Poetsen One" }}
+              >
+                Quantity: {itemQuantity[item.card.info.id] || 0}
               </Typography>
             </Stack>
           </Stack>
