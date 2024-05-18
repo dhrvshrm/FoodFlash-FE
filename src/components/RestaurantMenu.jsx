@@ -1,7 +1,9 @@
 import { Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useRestaurantMenu } from "../hooks/useRestaurantMenu";
+import { useGeolocation } from "../hooks/useGeoLocation";
+import { setUserArea } from "../store/slices/userInfoSlice";
 import NoDataMessage from "./NoDataMsg";
 import ResCategory from "./REstaurantCategory";
 import Shimmer from "./Shimmer";
@@ -9,12 +11,13 @@ import Shimmer from "./Shimmer";
 function RestaurantMenu() {
   const params = useParams();
   const { id } = params;
-  const { menuData, loading, error } = useRestaurantMenu(id);
+  const [menuData, setMenuData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { latitude, longitude } = useGeolocation();
+  const dispatch = useDispatch();
 
-  if (loading) return <Shimmer count={12} />;
-  if (error)
-    return <Typography sx={{ fontFamily: "Poetsen One" }}>{error}</Typography>;
-
+  const infoData = menuData.cards?.[2]?.card?.card?.info || {};
   const {
     cuisines,
     name,
@@ -25,21 +28,43 @@ function RestaurantMenu() {
     areaName,
     totalRatingsString,
     feeDetails,
-  } = menuData.cards[2].card.card.info;
-  console.log({ feeDetails });
+  } = infoData;
+
+  console.log({ areaName });
+
+  useEffect(() => {
+    dispatch(setUserArea(areaName));
+  }, [areaName, dispatch]);
 
   const { itemCards } =
-    menuData.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
+    menuData?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
       ?.card || [];
 
   const categoryCards =
-    menuData.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+    menuData?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
-  const filteredCategoryCards = categoryCards.filter(
-    (category) =>
-      category.card?.["card"]?.["@type"] ===
-      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-  );
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const URL = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${latitude}&lng=${longitude}&restaurantId=${id}`;
+        const response = await fetch(URL);
+        const data = await response.json();
+        setMenuData(data?.data || []);
+        setLoading(false);
+      } catch (error) {
+        setError("Error fetching data. Please try again later.");
+        setLoading(false);
+      }
+    }
+    if (latitude !== 0 && longitude !== 0) {
+      fetchData();
+    }
+  }, [latitude, longitude, id]);
+
+  if (loading) return <Shimmer count={12} />;
+  if (error)
+    return <Typography sx={{ fontFamily: "Poetsen One" }}>{error}</Typography>;
 
   if (!menuData || !menuData.cards || !menuData.cards[2]?.card?.card?.info) {
     return <NoDataMessage type="noMenuData" />;
@@ -49,7 +74,11 @@ function RestaurantMenu() {
     return <NoDataMessage type="noItems" />;
   }
 
-  console.log({ menuCard: menuData.cards[2].card.card.info });
+  const filteredCategoryCards = categoryCards?.filter(
+    (category) =>
+      category.card?.["card"]?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
 
   const restaurantInfo = [
     {
@@ -69,9 +98,10 @@ function RestaurantMenu() {
     },
     {
       title: "Delivery time",
-      // eslint-disable-next-line no-useless-concat
       value:
-        sla?.minDeliveryTime + "-" + sla?.maxDeliveryTime + " mins" || "N/A",
+        sla?.minDeliveryTime && sla?.maxDeliveryTime
+          ? `${sla.minDeliveryTime}-${sla.maxDeliveryTime} mins`
+          : "N/A",
       emoji: "🛵",
     },
   ];
@@ -110,7 +140,7 @@ function RestaurantMenu() {
               fontSize: "1rem",
             }}
           >
-            📍 {labels[1].message.replaceAll(",", ", ")}
+            📍 {labels?.[1]?.message?.replaceAll(",", ", ") || "N/A"}
           </Typography>
         </Stack>
         <Stack
@@ -142,14 +172,14 @@ function RestaurantMenu() {
               color="text.secondary"
               sx={{ fontFamily: "Poetsen One" }}
             >
-              Very far {sla.lastMileTravelString} from {areaName}
+              {sla?.lastMileTravelString} far from {areaName}
             </Typography>
             <Typography
               variant="body2"
               color="text.secondary"
               sx={{ fontFamily: "Poetsen One" }}
             >
-              Extra charges will be applied upto {feeDetails?.totalFee / 100} ₹
+              Extra charges will be applied up to {feeDetails?.totalFee / 100} ₹
             </Typography>
           </Stack>
         </Stack>
