@@ -1,61 +1,53 @@
-import { Stack, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
-import ItemList from "./ItemList";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-
-// const imgUrl = `https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660`;
+import ItemList from "./ItemList";
 
 function ResCategory({ data }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
-  const handleArrowClick = () => {
-    setIsOpen((prev) => !prev);
+  const handleChange = () => {
+    setExpanded((prevExpanded) => !prevExpanded);
   };
 
   return (
-    <Stack
-      direction="column"
+    <Accordion
+      expanded={expanded}
+      onChange={handleChange}
       sx={{
-        paddingY: "1.6rem",
+        paddingY: "0.75rem",
         paddingX: "20px",
         width: "60%",
         border: "solid lightgray 1px",
-        justifyContent: "space-between",
         borderRadius: "0.5rem",
         cursor: "pointer",
-        alignSelf: "center",
-        my: "1.2rem",
+        my: "0.85rem",
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
         backgroundColor: "#f9f9f9",
       }}
     >
-      <Stack
-        onClick={handleArrowClick}
-        gap={1}
-        direction="row"
-        sx={{
-          justifyContent: "space-between",
-        }}
-      >
-        <Typography
-          variant="body1"
-          fontWeight={500}
-          fontSize={18}
-          sx={{
-            fontFamily: "Poetsen One",
-          }}
-        >
-          {data?.title} ({data?.itemCards?.length})
-        </Typography>
-        <KeyboardArrowDownIcon
-          cursor="pointer"
-          sx={{
-            rotate: isOpen ? "180deg" : "0deg",
-          }}
-        />
-      </Stack>
-      {isOpen && <ItemList itemCards={data?.itemCards} isOpen={isOpen} />}
-    </Stack>
+      <AccordionSummary expandIcon={<KeyboardArrowDownIcon />}>
+        <Stack direction="row" justifyContent="space-between">
+          <Typography
+            variant="body1"
+            fontWeight={500}
+            fontSize={18}
+            fontFamily="Poetsen One"
+          >
+            {data?.title} ({data?.itemCards?.length})
+          </Typography>
+        </Stack>
+      </AccordionSummary>
+      <AccordionDetails>
+        <ItemList itemCards={data?.itemCards} isOpen={expanded} />
+      </AccordionDetails>
+    </Accordion>
   );
 }
 

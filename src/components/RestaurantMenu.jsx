@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useGeolocation } from "../hooks/useGeoLocation";
 import { setUserArea } from "../store/slices/userInfoSlice";
 import NoDataMessage from "./NoDataMsg";
-import ResCategory from "./REstaurantCategory";
+import ResCategory from "./RestaurantCategory";
 import Shimmer from "./Shimmer";
 
 function RestaurantMenu() {

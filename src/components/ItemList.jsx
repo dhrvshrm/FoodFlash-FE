@@ -24,7 +24,6 @@ function ItemList({ itemCards, isOpen }) {
         transition: "height 0.3s ease-in-out",
         height: isOpen ? "fit-content" : 0,
         overflow: "hidden",
-        paddingY: "1.6rem",
       }}
     >
       {itemCards?.map((item) => (
@@ -39,7 +38,7 @@ function ItemList({ itemCards, isOpen }) {
             alignItems: "center",
             borderRadius: "0.5rem",
             cursor: "pointer",
-            my: "1.75rem",
+            my: "1.2rem",
             mx: "1rem",
             backgroundColor: "white",
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.05)",
