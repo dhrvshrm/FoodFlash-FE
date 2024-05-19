@@ -11,8 +11,6 @@ const Cart = () => {
 
   const handleClearCart = () => {
     dispatch(clearItems());
-    localStorage.removeItem("cart");
-    window.location.reload();
   };
 
   const aggregatedItems = cards.reduce((acc, item) => {
