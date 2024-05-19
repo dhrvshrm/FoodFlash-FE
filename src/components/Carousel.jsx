@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { Box, Grid, Paper } from "@mui/material";
+import { useEffect, useState } from "react";
 import Carousel2 from "../assets/Carousel1.png";
 import Carousel1 from "../assets/Carousel2.png";
 import Carousel3 from "../assets/Carousel3.png";
-import { Box, Grid, Paper } from "@mui/material";
-import { Vignette } from "@mui/icons-material";
 
 const styles = {
   root: {

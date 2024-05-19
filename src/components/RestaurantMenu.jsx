@@ -6,7 +6,7 @@ import { useGeolocation } from "../hooks/useGeoLocation";
 import { setUserArea } from "../store/slices/userInfoSlice";
 import NoDataMessage from "./NoDataMsg";
 import Shimmer from "./Shimmer";
-import ResCategory from "./RestaurantCategory";
+import ResCategory from "./ResCategory";
 
 function RestaurantMenu() {
   const params = useParams();
