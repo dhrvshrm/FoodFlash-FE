@@ -49,25 +49,27 @@ export const RestaurantCardContainer = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const { latitude, longitude } = useGeolocation();
   console.log({ listOfRestaurant });
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const data = await fetch(
+        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}`
+      );
+      const json = await data.json();
+      const { restaurants } =
+        json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle ||
+        json.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle ||
+        [];
+      setListOfRestaurant(restaurants);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const data = await fetch(
-          `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}`
-        );
-        const json = await data.json();
-        const { restaurants } =
-          json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle ||
-          json.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle ||
-          [];
-        setListOfRestaurant(restaurants);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
     fetchData();
   }, [latitude, longitude]);
 
@@ -82,6 +84,12 @@ export const RestaurantCardContainer = () => {
       window.removeEventListener("offline", updateOnlineStatus);
     };
   }, []);
+
+  useEffect(() => {
+    if (searchText === "") {
+      fetchData();
+    }
+  }, [searchText]);
 
   const handleSearch = () => {
     const filteredList = listOfRestaurant.filter(
@@ -104,6 +112,7 @@ export const RestaurantCardContainer = () => {
 
   function handleReset() {
     setSearchText("");
+    fetchData();
   }
 
   return (
@@ -111,7 +120,7 @@ export const RestaurantCardContainer = () => {
       <Stack direction="row" gap={3} sx={STYLES.container}>
         <FilterBtn handleFilterClick={handleFilterClick} />
         <Button onClick={handleReset} sx={STYLES.button}>
-          Reset
+          Clear
         </Button>
 
         <Input
