@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Box, Stack, Typography } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { useDispatch, useSelector } from "react-redux";
+import { Box, Stack, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { addItem } from "../store/slices/cardSlice";
 
 function ItemList({ itemCards, isOpen }) {
