@@ -1,4 +1,4 @@
-Food Delivery App
+Food Flash - Food Delivery App
 =================
 
 This repository contains the source code for a food delivery app built with React, Redux Toolkit, React Router, and MUI.
@@ -6,12 +6,12 @@ This repository contains the source code for a food delivery app built with Reac
 About
 -----
 
-This project aims to provide users with a convenient way to order food from nearby restaurants. It fetches restaurant data dynamically from the user's current location using the Swiggy live API, allowing users to browse, search, sort, filter, add items to cart, and proceed to payment seamlessly.
+This project aims to provide users with a convenient way to order food from nearby restaurants. It fetches restaurant data dynamically from the user's current location using the Third Party Food Ordering live API, allowing users to browse, search, sort, filter, add items to cart, and proceed to payment seamlessly.
 
 Key Features
 ------------
 
-*   **Dynamic Restaurant Data**: Fetches restaurant data in real-time from Swiggy's live API based on the user's current location.
+*   **Dynamic Restaurant Data**: Fetches restaurant data in real-time from Third Party Food Ordering live API based on the user's current location.
     
 *   **Search, Sort, Filter**: Allows users to easily search for restaurants, sort them based on various criteria, and apply filters to find the desired options.
     
@@ -39,33 +39,14 @@ To run this project locally, follow these steps:
 
 1.  Clone the repository:
     
+```git clone https://github.com/dhrv-shrm/FoodFlash-FE.git```
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   bashCopy codegit clone https://github.com/dhrv-shrm/FoodFlash-FE.git   `
-
-1.  Navigate to the project directory:
+2.  Install dependencies:
     
+```npm install```
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   bashCopy codecd food-delivery-app   `
-
-1.  Install dependencies:
+3.  Start the development server:
     
+```npm run start```
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Copy codenpm install   `
-
-1.  Start the development server:
-    
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   sqlCopy codenpm start   `
-
-1.  Open your browser and go to http://localhost:3000 to view the app.
-    
-
-Contributing
-------------
-
-Contributions are welcome! Feel free to open issues or submit pull requests to help improve this project. For major changes, please open an issue first to discuss what you would like to change.
-
-License
--------
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+4.  Open your browser and go to `http://localhost:3000` to view the app.
