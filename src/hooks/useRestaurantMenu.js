@@ -5,7 +5,7 @@ export function useRestaurantMenu(id) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const URL = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.95250&lng=75.71050&restaurantId=${id}`;
+  const URL = `https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.95250&lng=75.71050&restaurantId=${id}`;
 
   useEffect(() => {
     async function fetchData() {
