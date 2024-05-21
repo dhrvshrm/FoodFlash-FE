@@ -54,7 +54,7 @@ export const RestaurantCardContainer = () => {
     setIsLoading(true);
     try {
       const data = await fetch(
-        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}`
+        `https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}`
       );
       const json = await data.json();
       const { restaurants } =
@@ -74,7 +74,7 @@ export const RestaurantCardContainer = () => {
       setIsLoading(true);
       try {
         const data = await fetch(
-          `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}`
+          `https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}`
         );
         const json = await data.json();
         const { restaurants } =
@@ -111,7 +111,7 @@ export const RestaurantCardContainer = () => {
         setIsLoading(true);
         try {
           const data = await fetch(
-            `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}`
+            `https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}`
           );
           const json = await data.json();
           const { restaurants } =

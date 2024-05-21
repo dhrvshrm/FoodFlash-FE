@@ -46,8 +46,8 @@ function RestaurantMenu() {
   useEffect(() => {
     async function fetchData() {
       try {
-        setLoading(true);
-        const URL = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${latitude}&lng=${longitude}&restaurantId=${id}`;
+        setLoading(true); // https://cors-anywhere.herokuapp.com/
+        const URL = `https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${latitude}&lng=${longitude}&restaurantId=${id}`;
         const response = await fetch(URL);
         const data = await response.json();
         setMenuData(data?.data || []);
