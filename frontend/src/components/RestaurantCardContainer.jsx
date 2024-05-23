@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import FilterBtn from "./FilterBtn";
 import { Button, Input, Stack } from "@mui/material";
 import UserOffline from "./UserOffline";
+import axios from "axios"; // Import axios
 import { useGeolocation } from "../hooks/useGeoLocation";
 
 const STYLES = {
@@ -50,38 +51,16 @@ export const RestaurantCardContainer = () => {
   const { latitude, longitude } = useGeolocation();
   console.log({ listOfRestaurant });
 
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      const data = await fetch(
-        `https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}`
-      );
-      const json = await data.json();
-      const { restaurants } =
-        json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle ||
-        json.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle ||
-        [];
-      setListOfRestaurant(restaurants);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const data = await fetch(
-          `https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}`
-        );
-        const json = await data.json();
-        const { restaurants } =
-          json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle ||
-          json.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle ||
-          [];
-        setListOfRestaurant(restaurants);
+        const response = await axios.post("/getRestaurants", {
+          latitude,
+          longitude,
+        }); // Use axios.post
+        console.log(response.data);
+        setListOfRestaurant(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -110,15 +89,11 @@ export const RestaurantCardContainer = () => {
       const fetchData = async () => {
         setIsLoading(true);
         try {
-          const data = await fetch(
-            `https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}`
-          );
-          const json = await data.json();
-          const { restaurants } =
-            json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle ||
-            json.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle ||
-            [];
-          setListOfRestaurant(restaurants);
+          const response = await axios.post("/getRestaurants", {
+            latitude,
+            longitude,
+          }); // Use axios.post
+          setListOfRestaurant(response.data);
         } catch (error) {
           console.error("Error fetching data:", error);
         } finally {
@@ -130,7 +105,6 @@ export const RestaurantCardContainer = () => {
       }
     }
   }, [latitude, longitude, searchText]);
-
   const handleSearch = () => {
     const filteredList = listOfRestaurant.filter(
       (restaurant) =>
@@ -152,7 +126,7 @@ export const RestaurantCardContainer = () => {
 
   function handleReset() {
     setSearchText("");
-    fetchData();
+    // fetchData();
   }
 
   return (
